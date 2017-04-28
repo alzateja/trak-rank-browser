@@ -1,2 +1,19 @@
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
+
+body {
+  // background-image: url('http://www.wickedsa.com/i/2017/03/awesome-music-wallpapers-images.jpg');
+  // background-size: cover;
+  padding-top: 70px;
+}
+
+.btn-lg {
+  margin-right: 30px ;
+  text-align: center;
+
+}
+
+.jumbotron {
+  margin-right: 30px ;
+  text-align: center;;
+}
