@@ -1,25 +1,23 @@
 'use strict'
+const albumEvents = require('../ratings/events.js')
+let store = require('../store')
 
 const showAlbumsTemplate = require('../templates/album-listing.handlebars')
 
 const getAlbumsSuccess = (data) => {
-  console.log('Album get sucess')
-  console.log(data)
+  console.log('Get All Albums success')
   let showAlbumsHtml = showAlbumsTemplate({ albums: data.albums })
-  console.log(showAlbumsHtml)
   $('.content').append(showAlbumsHtml)
-//  $('.remove-button').on('click', hideBook);
+  $('.rate-album').on('click', albumEvents.onViewAlbumDetail)
 }
-
-// const hideBook = (event) => {
-//   event.preventDefault();
-//   $("." + event.target.id ).hide()
-//
-// };
 
 const clearAlbums = () => {
   console.log('Album clear sucess')
   $('.content').empty()
+}
+
+const addAlbumSuccess = () => {
+  console.log('Album add sucess')
 }
 
 const failure = (error) => {
@@ -28,6 +26,7 @@ const failure = (error) => {
 }
 
 module.exports = {
+  addAlbumSuccess,
   getAlbumsSuccess,
   clearAlbums,
   failure

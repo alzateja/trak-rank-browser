@@ -9,6 +9,15 @@ let getAlbums = function () {
   })
 }
 
+let addAlbum = function (data) {
+  return $.ajax({
+    url: config.apiOrigin + '/albums',
+    method: 'POST',
+    data
+  })
+}
+
 module.exports = {
-  getAlbums
+  getAlbums,
+  addAlbum
 }

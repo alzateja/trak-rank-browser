@@ -16,7 +16,7 @@
 
       <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
-    <p class="navbar-text navbar-left">Signed in as <a href="#" class="navbar-link">Current User</a></p>
+    <p class="navbar-text navbar-left" id="display-current-user"></p>
     <ul class="nav nav-pills pull-right">
     <li role="presentation" class="active"><a href="#">Home</a></li>
     <li role="presentation"><a href="#">About</a></li>
@@ -56,6 +56,7 @@
 
 <button id="hbars">Test HandleBars</button>
 <button id="clear-hbars">Test Clear HandleBars</button>
+<button id="create album" data-toggle="modal" data-target="#addAlbumForm">Create Album</button>
 </div>
 
 <div id="content" class="content row">
@@ -91,7 +92,7 @@
                              <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                              <span class="sr-only">Uh oh!:</span>Your passwords do not match! Please try again!</span>
                            </div>
-                            </div>
+                      </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                       <button type="submit" class="btn btn-primary" id="signupsubmit">Submit</button>
@@ -164,38 +165,128 @@
 
 
 
-      <!-- Stats modal -->
-      <form class="modal fade" id="changePasswordForm" tabindex="-1" role="dialog" aria-labelledby="changePasswordLabel">
+      <!-- View Album modal -->
+      <form class="modal fade" id="viewAlbumForm" tabindex="-1" role="dialog" aria-labelledby="changePasswordLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
 
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="changePasswordLabel">Current User's Stats</h4>
+              <h4 class="modal-title" id="viewAlbumLabel">Current Album</h4>
             </div>
-          <!--    <div id="sign-in-alert" class="alert alert-danger" role="alert">
-              <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-              <span class="sr-only">Uh oh!:</span> Unable to login with this email and password
-            </div> -->
+
             <div class="modal-body">
-                  <div class="form-group">
-                    <label for="playerOldPassword">Email</label>
-                    <input name="passwords[old]" type="password" class="form-control" id="changePassOld" placeholder="Please enter your email.">
+              <!-- Current Information-->
+                <div class="form-group col-md-6">
+                  <h3>Current Information</h3>
+                  <label for="albumRanking">Ranking:</label>
+                  <p id="rankingDisplay">Unranked</p>
+                    <label for="albumArtist">Artist:</label>
+                    <p id="artistDisplay"></p>
+                    <label for="albumTitle">Album:</label>
+                    <p id="albumDisplay"></p>
+                    <label for="albumYear">Year:</label>
+                    <p id="yearDisplay"></p>
+                    <label for="albumStatus">Status:</label>
+                    <p id="statusDisplay">Not Started</p>
+                      <label for="albumRating">Rating:</label>
+                      <p id="ratingDisplay">0</p>
                   </div>
-                  <div class="form-group">
-                    <label for="playerOldPassword">New Password</label>
-                    <input name="passwords[new]" type="password" class="form-control" id="changePassNew" placeholder="Please enter password.">
+
+                  <!-- Current Image-->
+                  <div id="formImage" class ="col-md-6 form-group ">
                   </div>
-                    </div>
+
+                  <!-- Current Comment-->
+                  <div class="form-group col-md-6">
+                    <h3>Current Comment</h3>
+                    <label for="albumTitle">Comment:</label>
+                    <p id="commentDisplay"></p>
+                </div>
+              <!-- Input info-->
+                              <div class="form-group col-md-6">
+                                <h3>User Input</h3>
+                                  <label for="albumStatus">Enter your Status:</label>
+                                                      <div class="dropdown">
+                                                      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                        Album Status
+                                                        <span class="caret"></span>
+                                                      </button>
+                                                      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                                        <li><a href="#">Not Started</a></li>
+                                                        <li><a href="#">In progress</a></li>
+                                                        <li><a href="#">Completed</a></li>
+                                                      </ul>
+                                                    </div>
+
+                                                    <label for="albumStatus">Enter your Rating:</label>
+                                                                        <div class="dropdown">
+                                                                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                                          Rating
+                                                                          <span class="caret"></span>
+                                                                        </button>
+                                                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                                                          <li><a href="#">0</a></li>
+                                                                          <li><a href="#">1</a></li>
+                                                                          <li><a href="#">2</a></li>
+                                                                          <li><a href="#">3</a></li>
+                                                                          <li><a href="#">4</a></li>
+                                                                          <li><a href="#">5</a></li>
+                                                                        </ul>
+                                                                      </div>
+                                  <label for="albumRating">Enter your Rating:</label>
+                                  <label for="albumInputComments">Enter any comments:</label>
+                                  <textarea class="form-control name=album_rating[comment]" rows="3"></textarea>
+                                        </div>
+                                      </div>
+
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-
+              <button type="click" class="btn btn-primary" id="deleteratings">Delete Rating</button>
+              <button type="submit" class="btn btn-primary" id="saveratings">Save Rating</button>
             </div>
           </div>
         </div>
       </form>
 
 
+
+<!-- class="modal fade" -->
+
+
+      <!-- Ad  Album modal -->
+      <form  class="modal fade" id="addAlbumForm" tabindex="-1" role="dialog" aria-labelledby="addAlbumLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="addAlbumLabel">Add a new Album</h4>
+            </div>
+            <div class="modal-body">
+                  <div class="form-group">
+                    <label for="albumArtist">Artist(Required):</label>
+                    <input name="album[artist]" type="text" class="form-control" id="setArtist" placeholder="Please enter the artist.">
+                  </div>
+                  <div class="form-group">
+                    <label for="albumTitle">Album(Required):</label>
+                    <input name="album[album]" type="text" class="form-control has" id="setAlbum" placeholder="Please enter the album name.">
+                  </div>
+                  <div class="form-group">
+                    <label for="albumYear">Year:</label>
+                    <input name="album[year]" type="text" class="form-control" id="setYear" placeholder="Please enter the album year.">
+                  </div>
+                  <div class="form-group">
+                    <label for="albumImage">Image:</label>
+                    <input name="album[image]" type="text" class="form-control" id="setImage" placeholder="Please enter the url for the album image.">
+                  </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary" id="createalbumsubmit">Submit</button>
+            </div>
+          </div>
+        </div>
+      </form>
 
     </body>
 </html>
