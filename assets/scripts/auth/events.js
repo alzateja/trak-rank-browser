@@ -7,6 +7,8 @@ const getFormFields = require('../../../lib/get-form-fields')
 // SIGNUP FUNCTIONALITY LAUNCHED WHEN CLICKED IN MODAL___________________
 const onSignUp = function (event) {
   event.preventDefault()
+  console.log(event)
+  console.log(this)
   const data = getFormFields(this)
   console.log(data)
   console.log(data.credentials.password)
@@ -57,6 +59,7 @@ const onChangePassword = function (event) {
   event.preventDefault()
   console.log('Changing password run')
   const data = getFormFields(this)
+  console.log(data)
   if (store.user === undefined) {
     console.log('Not signed In. Please Sign In to change password')
     return
