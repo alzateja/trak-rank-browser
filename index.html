@@ -10,7 +10,7 @@
       <!-- Do not add `script` tags unless you know what you are doing -->
       <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
-    </head>
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Raleway" rel="stylesheet">
 
     <body class="container-fluid">
 
@@ -18,21 +18,23 @@
   <div class="container-fluid">
     <p class="navbar-text navbar-left" id="display-current-user"></p>
     <ul class="nav nav-pills pull-right">
-    <li role="presentation" class="active"><a href="#">Home</a></li>
-    <li role="presentation"><a href="#">About</a></li>
-    <li role="presentation"><a href="#">Contact</a></li>
+    <li role="presentation" class="active" id="user-albums-tab"><a href="#" id="user-albums">Home</a></li>
+    <li role="presentation" class="signin-show" id="create-album-tab"><a href="#" data-toggle="modal" data-target="#addAlbumForm">Create Album</a></li>
+    <li role="presentation" class="signin-show"  id="user-stats-tab"><a href="#"  data-toggle="modal" data-target="#userStatsForm">User-Stats</a></li>
     <li class="dropdown" role="presentation" id="user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" >User Options<span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a data-toggle="modal" data-target="#signUpForm" >Sign Up</a></li>
-              <li><a  data-toggle="modal" data-target="#signInForm" >Sign In</a></li>
-              <li><a data-toggle="modal" data-target="#changePasswordForm" >Change Password</a></li>
-              <li><a id="sign-out">Sign Out</a></li>
-    </ul>
+              <li><a data-toggle="modal" data-target="#signUpForm" class="signin-hide">Sign Up</a></li>
+              <li><a  data-toggle="modal" data-target="#signInForm" class="signin-hide">Sign In</a></li>
+              <li><a data-toggle="modal" data-target="#changePasswordForm" class="signin-show" >Change Password</a></li>
+              <li><a id="sign-out" class="signin-show">Sign Out</a></li>
+              </ul>
+            </div>
+          </nav>
+<!-- END OF NAVBAR -->
+<div class="signin-hide  launch">
 
-  </div>
-</nav>
-
+    <div class="background-image">
     <div class="jumbotron">
       <h1>Trak-Rank</h1>
       <h3>Rate your music</h3>
@@ -40,31 +42,56 @@
         <p>Music is a moral law. It gives soul to the universe, wings to the mind, flight to the imagination, and charm and gaiety to life and to everything.</p>
         <footer>Plato</footer>
       </blockquote>
-
-
-      <a class="btn btn-primary btn-lg btn-success" data-toggle="modal" data-target="#signUpForm" id="signupbut" href="#" role="button">Sign Up</a>
-      <a class="btn btn-primary btn-lg " data-toggle="modal" data-target="#signInForm" id="signinbut" href="#" role="button">Sign In</a>
+      <a class="btn btn-info btn-lg " data-toggle="modal" data-target="#signUpForm" id="signupbut" href="#" class="signin-hide" role="button">Sign Up</a>
+      <a class="btn btn-primary btn-lg " data-toggle="modal" data-target="#signInForm" id="signinbut" class="signin-hide" href="#" role="button">Sign In</a>
     </div>
+  </div>
+    <!-- End of Jumbotron-->
 
+ <!-- Initial view -->
+ <!-- 1st- Video Div -->
+  <div class="panel panel-primary ">
+    <div class="panel-heading">
+      <h1 class="panel-title">Listen</h1>
+    </div>
+      <div id='launch-video' class="embed-responsive embed-responsive-16by9">
+              <!-- <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/hi4pzKvuEQM?autoplay=1"></iframe> -->
+        </div>
+      </div>
 
+ <!--2nd - Image Div -->
+          <div class ="panel">
+          <div class="panel panel-info minipanel">
+            <div class="panel-heading">
+              <h1 class="panel-title">Add Your Music</h1>
+            </div>
+            <img class="img-responsive landing-image" src="http://i.imgur.com/OyesG4C.jpg">
+          </div>
 
-<div class="row">
-<h1>Test Buttons</h1>
+ <!--3nd - Image Div -->
+          <div class="panel panel-info minipanel">
+            <div class="panel-heading">
+    <h1 class="panel-title">Rate your music</h1>
+  </div>
+  <img class="img-responsive landing-image" src="http://tiledwallpaper.com/wallpapers/2015/4/2075297009552868a80ead53.91206860.jpg">
+  </div>
+
 </div>
-
-<div class="row">
-
-<button id="hbars">Test HandleBars</button>
-<button id="clear-hbars">Test Clear HandleBars</button>
-<button id="create album" data-toggle="modal" data-target="#addAlbumForm">Create Album</button>
 </div>
+<!-- Sign In Divs-->
+<!-- Calulcate nav -->
+<div class="row pages signin-show " id="pages">
+  <nav aria-label="...">
+    <ul class="pagination" id="page-lister">
 
+    </ul>
+  </nav>
+
+ <!-- Content Row -->
 <div id="content" class="content row">
 </div>
 
-
-
-
+</div>
 
 
               <!-- SIGN UP Modal -->
@@ -78,15 +105,15 @@
                     <div class="modal-body">
                           <div class="form-group">
                             <label for="playerEmail">Email</label>
-                            <input name="credentials[email]" type="email" class="form-control" id="signUpPlayerEmail" placeholder="Please enter your email.">
+                            <input name="credentials[email]" type="email" class="form-control signup-input" id="signUpPlayerEmail" placeholder="Please enter your email.">
                           </div>
                           <div class="form-group">
                             <label for="playerPassword">Password</label>
-                            <input name="credentials[password]" type="password" class="form-control" id="signUpPlayerPassword" placeholder="Please enter password.">
+                            <input name="credentials[password]" type="password" class="form-control signup-input" id="signUpPlayerPassword" placeholder="Please enter password.">
                           </div>
                           <div class="form-group">
                             <label for="playerPasswordConfirm">Password</label>
-                            <input name="credentials[password_confirmation]" type="password" class="form-control" id="signUpPlayerPasswordConfirm" placeholder="Confirm Password.">
+                            <input name="credentials[password_confirmation]" type="password" class="form-control signup-input" id="signUpPlayerPasswordConfirm" placeholder="Confirm Password.">
                           </div>
                           <div id="sign-up-failure-alert" class="alert alert-danger" role="alert">
                              <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
@@ -134,6 +161,39 @@
       </form>
 
 
+      <!-- User Stats -->
+      <form class="modal fade" id="userStatsForm" tabindex="-1" role="dialog" aria-labelledby="userStatsLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+t
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="userStatsLabel">User Statistics</h4>
+            </div>
+
+            <div class="modal-body">
+              <div class="form-group">
+              <label id="album-count">Total Albums:</label>
+            </div>
+            <div class="form-group">
+              <label id="album-completed">Completed:</label>
+            </div>
+            <div class="form-group">
+              <label id="album-in-progress">In Progress:</label>
+            </div>
+            <div class="form-group">
+              <label id="album-not-started">Not Started:</label>
+            </div>
+            <div class="form-group">
+              <label id="album-avg-ratings">Avg. Rating:</label>
+            </div>
+                    </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </form>
 
       <!-- Password Modal -->
       <form class="modal fade" id="changePasswordForm" tabindex="-1" role="dialog" aria-labelledby="changePasswordLabel">
@@ -179,6 +239,8 @@
               <!-- Current Information-->
                 <div class="form-group col-md-6">
                   <h3>Current Information</h3>
+                  <label for="albumID">ID:</label>
+                  <p id="albumIDDisplay"></p>
                   <label for="albumRanking">Ranking:</label>
                   <p id="rankingDisplay">Unranked</p>
                     <label for="albumArtist">Artist:</label>
@@ -188,9 +250,9 @@
                     <label for="albumYear">Year:</label>
                     <p id="yearDisplay"></p>
                     <label for="albumStatus">Status:</label>
-                    <p id="statusDisplay">Not Started</p>
+                    <p id="statusDisplay" class="ratingoutput"></p>
                       <label for="albumRating">Rating:</label>
-                      <p id="ratingDisplay">0</p>
+                      <p id="ratingDisplay" class="ratingoutput"></p>
                   </div>
 
                   <!-- Current Image-->
@@ -201,48 +263,49 @@
                   <div class="form-group col-md-6">
                     <h3>Current Comment</h3>
                     <label for="albumTitle">Comment:</label>
-                    <p id="commentDisplay"></p>
+                    <p id="commentDisplay" class="ratingoutput"></p>
                 </div>
               <!-- Input info-->
                               <div class="form-group col-md-6">
-                                <h3>User Input</h3>
+                                <h4 >User Rating:</h4>
+                                <p id="rating-reference" class="ratingoutput"></p>
                                   <label for="albumStatus">Enter your Status:</label>
                                                       <div class="dropdown">
-                                                      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                      <button class="btn btn-default dropdown-toggle" type="button" id="album-status-select" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" >
                                                         Album Status
                                                         <span class="caret"></span>
                                                       </button>
-                                                      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                                        <li><a href="#">Not Started</a></li>
-                                                        <li><a href="#">In progress</a></li>
-                                                        <li><a href="#">Completed</a></li>
+                                                      <ul class="dropdown-menu" aria-labelledby="album-status-select">
+                                                        <li><a href="#" class="status-select">Not Started</a></li>
+                                                        <li><a href="#" class="status-select">In progress</a></li>
+                                                        <li><a href="#"  class="status-select">Completed</a></li>
                                                       </ul>
                                                     </div>
 
                                                     <label for="albumStatus">Enter your Rating:</label>
                                                                         <div class="dropdown">
-                                                                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                                        <button class="btn btn-default dropdown-toggle" type="button" id="album-rating-select" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                                                           Rating
                                                                           <span class="caret"></span>
                                                                         </button>
-                                                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                                                          <li><a href="#">0</a></li>
-                                                                          <li><a href="#">1</a></li>
-                                                                          <li><a href="#">2</a></li>
-                                                                          <li><a href="#">3</a></li>
-                                                                          <li><a href="#">4</a></li>
-                                                                          <li><a href="#">5</a></li>
+                                                                        <ul class="dropdown-menu" aria-labelledby="album-rating-select">
+                                                                          <li><a href="#" class="rating-select">0</a></li>
+                                                                          <li><a href="#" class="rating-select">1</a></li>
+                                                                          <li><a href="#" class="rating-select">2</a></li>
+                                                                          <li><a href="#" class="rating-select">3</a></li>
+                                                                          <li><a href="#" class="rating-select">4</a></li>
+                                                                          <li><a href="#" class="rating-select">5</a></li>
                                                                         </ul>
                                                                       </div>
                                   <label for="albumRating">Enter your Rating:</label>
                                   <label for="albumInputComments">Enter any comments:</label>
-                                  <textarea class="form-control name=album_rating[comment]" rows="3"></textarea>
+                                  <textarea class="form-control ratingoutput" name=user_rating[comment] rows="3" id="comment-item"></textarea>
                                         </div>
                                       </div>
 
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="click" class="btn btn-primary" id="deleteratings">Delete Rating</button>
+              <button type="click" class="btn btn-primary" id="deleteratings">Reset Rating</button>
               <button type="submit" class="btn btn-primary" id="saveratings">Save Rating</button>
             </div>
           </div>
@@ -265,19 +328,19 @@
             <div class="modal-body">
                   <div class="form-group">
                     <label for="albumArtist">Artist(Required):</label>
-                    <input name="album[artist]" type="text" class="form-control" id="setArtist" placeholder="Please enter the artist.">
+                    <input name="album[artist]" type="text" class="form-control album-input" id="setArtist" placeholder="Please enter the artist.">
                   </div>
                   <div class="form-group">
                     <label for="albumTitle">Album(Required):</label>
-                    <input name="album[album]" type="text" class="form-control has" id="setAlbum" placeholder="Please enter the album name.">
+                    <input name="album[album]" type="text" class="form-control album-input" id="setAlbum" placeholder="Please enter the album name.">
                   </div>
                   <div class="form-group">
                     <label for="albumYear">Year:</label>
-                    <input name="album[year]" type="text" class="form-control" id="setYear" placeholder="Please enter the album year.">
+                    <input name="album[year]" type="text" class="form-control album-input" id="setYear" placeholder="Please enter the album year.">
                   </div>
                   <div class="form-group">
                     <label for="albumImage">Image:</label>
-                    <input name="album[image]" type="text" class="form-control" id="setImage" placeholder="Please enter the url for the album image.">
+                    <input name="album[image]" type="text" class="form-control album-input" id="setImage" placeholder="Please enter the url for the album image.">
                   </div>
             </div>
             <div class="modal-footer">
