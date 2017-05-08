@@ -8,8 +8,7 @@ const indexFile = require('../index')
 const signUpSuccess = (data) => {
   console.log('User sucessfully created:', data)
   $('#sign-up-api-success-alert').show()
-  $('#signupsubmit').hide()
-  $('.input-hides').hide()
+  $('.signup-input-hides').hide()
   $('.signupclear').val('')
 }
 

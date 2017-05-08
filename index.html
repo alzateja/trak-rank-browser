@@ -29,6 +29,7 @@
               <li><a data-toggle="modal" data-target="#changePasswordForm" class="signin-show" >Change Password</a></li>
               <li><a id="sign-out" class="signin-show">Sign Out</a></li>
               </ul>
+            </ul>
             </div>
           </nav>
 <!-- END OF NAVBAR -->
@@ -42,8 +43,8 @@
         <p>Music is a moral law. It gives soul to the universe, wings to the mind, flight to the imagination, and charm and gaiety to life and to everything.</p>
         <footer>Plato</footer>
       </blockquote>
-      <a class="btn btn-info btn-lg " data-toggle="modal" data-target="#signUpForm" id="signupbut" href="#" class="signin-hide" role="button">Sign Up</a>
-      <a class="btn btn-primary btn-lg " data-toggle="modal" data-target="#signInForm" id="signinbut" class="signin-hide" href="#" role="button">Sign In</a>
+      <a class="btn btn-info btn-lg " data-toggle="modal" data-target="#signUpForm" id="signupbut" href="#" role="button">Sign Up</a>
+      <a class="btn btn-primary btn-lg " data-toggle="modal" data-target="#signInForm" id="signinbut" href="#" role="button">Sign In</a>
     </div>
   </div>
     <!-- End of Jumbotron-->
@@ -65,7 +66,7 @@
             <div class="panel-heading">
               <h1 class="panel-title">Add Your Music</h1>
             </div>
-            <img class="img-responsive landing-image" src="https://i.imgur.com/OyesG4C.jpg">
+            <img class="img-responsive landing-image" src="https://i.imgur.com/OyesG4C.jpg" alt="Album cover for To Pimp a Butterfly">
           </div>
 
  <!--3nd - Image Div -->
@@ -73,7 +74,7 @@
             <div class="panel-heading">
     <h1 class="panel-title">Rate your music</h1>
   </div>
-  <img class="img-responsive landing-image" src="http://tiledwallpaper.com/wallpapers/2015/4/2075297009552868a80ead53.91206860.jpg">
+  <img class="img-responsive landing-image" src="http://tiledwallpaper.com/wallpapers/2015/4/2075297009552868a80ead53.91206860.jpg" alt="Collage of album covers">
   </div>
 
 </div>
@@ -95,29 +96,30 @@
 
 
 <!-- AUTHORIZATION MODALS -->
+
               <!-- SIGN UP Modal -->
               <form class="modal fade" id="signUpForm" tabindex="-1" role="dialog" aria-labelledby="signUpLabel">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                       <h4 class="modal-title" id="signUpLabel">Please enter your information to sign up</h4>
                     </div>
                     <div class="modal-body">
-                          <div class="form-group input-hides">
+                      <!-- Sign Up Modal input fields-->
+                          <div class="form-group signup-input-hides">
                             <label for="playerEmail">Email</label>
                             <input name="credentials[email]" type="email" class="form-control signupclear" id="signUpPlayerEmail" placeholder="Please enter your email.">
                           </div>
-                          <div class="form-group input-hides">
+                          <div class="form-group signup-input-hides">
                             <label for="playerPassword">Password</label>
                             <input name="credentials[password]" type="password" class="form-control signupclear" id="signUpPlayerPassword" placeholder="Please enter password.">
                           </div>
-                          <div class="form-group input-hides">
+                          <div class="form-group signup-input-hides">
                             <label for="playerPasswordConfirm">Password Confirmation</label>
                             <input name="credentials[password_confirmation]" type="password" class="form-control signupclear " id="signUpPlayerPasswordConfirm" placeholder="Confirm Password.">
                           </div>
 
-                          <!-- Modals for input -->
+                          <!-- Sign Up Modal input alerts -->
                           <div id="sign-up-password-failure-alert" class="alert alert-danger signupmodalalert" role="alert">
                              <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                              <span class="sr-only">Uh oh!:</span>Your passwords do not match! Please try again!</span>
@@ -126,24 +128,24 @@
                               <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                               <span class="sr-only">Uh oh!:</span>You have a blank field! Please check doublecheck your entries and try again!</span>
                             </div>
-                          <!-- Modals for request -->
+                          <!-- Sign Up Modal API alerts -->
                             <div id="sign-up-api-failure-alert" class="alert alert-danger signupmodalalert" role="alert">
                                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                               <span class="sr-only">Uh oh!:</span>Something went wrong with our system. Please try your request again!</span>
+                               <span class="sr-only">Uh oh!:</span>Something went wrong with our server. Please try your request again!</span>
                              </div>
                              <div id="sign-up-api-duplicate-account-alert" class="alert alert-danger signupmodalalert" role="alert">
                                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                                 <span class="sr-only">Uh oh!:</span>Someone already seems to have registered under that email account. Please contact our admins.</span>
                               </div>
                              <div id="sign-up-api-success-alert" class="alert alert-success signupmodalalert" role="alert">
-                                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                                 <span class="sr-only">Success!:</span>You have successfuly created an account</span>
                               </div>
 
                       </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-default" id="signupclose">Close</button>
-                      <button type="submit" class="btn btn-primary" id="signupsubmit">Submit</button>
+                      <button type="submit" class="btn btn-primary signup-input-hides" id="signupsubmit">Submit</button>
                     </div>
                   </div>
                 </div>
@@ -328,7 +330,7 @@
 
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="click" class="btn btn-primary" id="deleteratings">Reset Rating</button>
+              <button type="button" class="btn btn-primary" id="deleteratings">Reset Rating</button>
               <button type="submit" class="btn btn-primary" id="saveratings">Save Rating</button>
             </div>
           </div>
