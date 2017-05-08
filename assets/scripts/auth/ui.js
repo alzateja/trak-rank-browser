@@ -6,20 +6,29 @@ const indexFile = require('../index')
 
 // Sign UP SUCCESS AND FAILURE MESSAGING ________________________
 const signUpSuccess = (data) => {
-  console.log(data)
-  $('#signUpForm').modal('hide')
-  $('#signUpPlayerPasswordConfirm').val('')
-  $('#signUpPlayerPassword').val('')
-  $('#signUpPlayerEmail').val('')
-
-  $('#sign-up-failure-alert').hide()
+  console.log('User sucessfully created:', data)
+  $('#sign-up-api-success-alert').show()
+  $('#signupsubmit').hide()
+  $('.input-hides').hide()
+  $('.signupclear').val('')
 }
 
 const signUpFailure = (error) => {
-  console.error(error)
-  $('#sign-up-failure-alert').show()
+  if (error.responseText === '{"email":["has already been taken"]}') {
+    $('#sign-up-api-duplicate-account-alert').show()
+    return
+  }
+  $('#sign-up-api-failure-alert').show()
 }
 
+// RESET SIGNUP MODAL
+const resetSignupModal = function () {
+  console.log('Resetting signup Modal')
+  $('.signupmodalalert').hide()
+  $('.signupclear').val('')
+  $('.input-hides').show()
+  $('#signUpForm').modal('hide')
+}
 //  SIGN IN SUCCESS AND FAILURE MESSAGING ________________________
 
 const signInSuccess = (data) => {
@@ -27,10 +36,9 @@ console.log(store)
 console.log(data);
   console.log('signIn success ran, data is: ', data)
   store.user = data.user
-  // Hide Modal
-  $('#signInForm').modal('hide')
-  // Clear fields
-  $('.signup-input').val('')
+
+  resetSigninModal()
+
   // Show AI ,new game, sign out, change pass, and options
   $('#sign-in-failure-alert').hide()
   $('.signin-hide').hide()
@@ -42,6 +50,8 @@ console.log(data);
 // New report
   $('#launch-video').empty()
   $('#display-current-user').text('Signed in as ' + data.user.email)
+
+
   albumEvents.onGetAlbums()
 }
 
@@ -99,6 +109,23 @@ const signOutLoadVideo = function (array) {
   $('#launch-video').append('<iframe class="embed-responsive-item" src="' + video + '&autoplay=1"></iframe>')
 }
 
+
+
+const resetSigninModal = function () {
+  $('.signinmodalalert').hide()
+  $('.signinclear').val('')
+  $('#signInForm').modal('hide')
+}
+
+const resetChangePasswordModal = function () {
+  $('.passwordchangeclear').val('')
+  $('#changePasswordForm').modal('hide')
+}
+
+const addHandlers = () => {
+
+}
+
 module.exports = {
   signUpSuccess,
   signUpFailure,
@@ -108,5 +135,6 @@ module.exports = {
   signOutSuccess,
   changePasswordFailure,
   changePasswordSuccess,
-  signInClose
+  signInClose,
+  resetSignupModal
 }

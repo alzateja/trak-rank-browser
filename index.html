@@ -65,7 +65,7 @@
             <div class="panel-heading">
               <h1 class="panel-title">Add Your Music</h1>
             </div>
-            <img class="img-responsive landing-image" src="http://i.imgur.com/OyesG4C.jpg">
+            <img class="img-responsive landing-image" src="https://i.imgur.com/OyesG4C.jpg">
           </div>
 
  <!--3nd - Image Div -->
@@ -94,6 +94,7 @@
 </div>
 
 
+<!-- AUTHORIZATION MODALS -->
               <!-- SIGN UP Modal -->
               <form class="modal fade" id="signUpForm" tabindex="-1" role="dialog" aria-labelledby="signUpLabel">
                 <div class="modal-dialog" role="document">
@@ -103,25 +104,45 @@
                       <h4 class="modal-title" id="signUpLabel">Please enter your information to sign up</h4>
                     </div>
                     <div class="modal-body">
-                          <div class="form-group">
+                          <div class="form-group input-hides">
                             <label for="playerEmail">Email</label>
-                            <input name="credentials[email]" type="email" class="form-control signup-input" id="signUpPlayerEmail" placeholder="Please enter your email.">
+                            <input name="credentials[email]" type="email" class="form-control signupclear" id="signUpPlayerEmail" placeholder="Please enter your email.">
                           </div>
-                          <div class="form-group">
+                          <div class="form-group input-hides">
                             <label for="playerPassword">Password</label>
-                            <input name="credentials[password]" type="password" class="form-control signup-input" id="signUpPlayerPassword" placeholder="Please enter password.">
+                            <input name="credentials[password]" type="password" class="form-control signupclear" id="signUpPlayerPassword" placeholder="Please enter password.">
                           </div>
-                          <div class="form-group">
-                            <label for="playerPasswordConfirm">Password</label>
-                            <input name="credentials[password_confirmation]" type="password" class="form-control signup-input" id="signUpPlayerPasswordConfirm" placeholder="Confirm Password.">
+                          <div class="form-group input-hides">
+                            <label for="playerPasswordConfirm">Password Confirmation</label>
+                            <input name="credentials[password_confirmation]" type="password" class="form-control signupclear " id="signUpPlayerPasswordConfirm" placeholder="Confirm Password.">
                           </div>
-                          <div id="sign-up-failure-alert" class="alert alert-danger" role="alert">
+
+                          <!-- Modals for input -->
+                          <div id="sign-up-password-failure-alert" class="alert alert-danger signupmodalalert" role="alert">
                              <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                              <span class="sr-only">Uh oh!:</span>Your passwords do not match! Please try again!</span>
                            </div>
+                           <div id="sign-up-blank-field-failure-alert" class="alert alert-danger signupmodalalert" role="alert">
+                              <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                              <span class="sr-only">Uh oh!:</span>You have a blank field! Please check doublecheck your entries and try again!</span>
+                            </div>
+                          <!-- Modals for request -->
+                            <div id="sign-up-api-failure-alert" class="alert alert-danger signupmodalalert" role="alert">
+                               <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                               <span class="sr-only">Uh oh!:</span>Something went wrong with our system. Please try your request again!</span>
+                             </div>
+                             <div id="sign-up-api-duplicate-account-alert" class="alert alert-danger signupmodalalert" role="alert">
+                                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                <span class="sr-only">Uh oh!:</span>Someone already seems to have registered under that email account. Please contact our admins.</span>
+                              </div>
+                             <div id="sign-up-api-success-alert" class="alert alert-success signupmodalalert" role="alert">
+                                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                <span class="sr-only">Success!:</span>You have successfuly created an account</span>
+                              </div>
+
                       </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-default" id="signupclose">Close</button>
                       <button type="submit" class="btn btn-primary" id="signupsubmit">Submit</button>
                     </div>
                   </div>
@@ -141,14 +162,14 @@
             <div class="modal-body">
                   <div class="form-group">
                     <label for="playerEmail">Email</label>
-                    <input name="credentials[email]" type="email" class="form-control" id="signInPlayerEmail" placeholder="Please enter your email.">
+                    <input name="credentials[email]" type="email" class="form-control signinclear" id="signInPlayerEmail" placeholder="Please enter your email.">
                   </div>
                   <div class="form-group">
                     <label for="playerPassword">Password</label>
-                    <input name="credentials[password]" type="password" class="form-control" id="signInPlayerPassword" placeholder="Please enter password.">
+                    <input name="credentials[password]" type="password" class="form-control signinclear" id="signInPlayerPassword" placeholder="Please enter password.">
                   </div>
-                  <div id="sign-in-failure-alert" class="alert alert-danger" role="alert">
-                     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                  <div id="sign-in-failure-alert" class="alert alert-danger signinmodalalert" role="alert">
+                     <span class="glyphicon glyphicon-exclamation-sign " aria-hidden="true"></span>
                      <span class="sr-only">Uh oh!:</span> Unable to login with this email and password. Please try again!</span>
                    </div>
                     </div>
@@ -161,11 +182,40 @@
       </form>
 
 
+      <!-- Password Modal -->
+      <form class="modal fade" id="changePasswordForm" tabindex="-1" role="dialog" aria-labelledby="changePasswordLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="changePasswordLabel">Change Password here</h4>
+            </div>
+
+            <div class="modal-body">
+                  <div class="form-group">
+                    <label for="playerOldPassword">Old Password</label>
+                    <input name="passwords[old]" type="password" class="form-control passwordchangeclear" id="changePassOld" placeholder="Please enter your email.">
+                  </div>
+                  <div class="form-group">
+                    <label for="playerOldPassword">New Password</label>
+                    <input name="passwords[new]" type="password" class="form-control passwordchangeclear" id="changePassNew" placeholder="Please enter password.">
+                  </div>
+                    </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-danger" id="changepasswordsubmit">Change Password!</button>
+            </div>
+          </div>
+        </div>
+      </form>
+
+<!-- END OF AUTHORIZATION MODALS -->
       <!-- User Stats -->
       <form class="modal fade" id="userStatsForm" tabindex="-1" role="dialog" aria-labelledby="userStatsLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
-t
+
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
               <h4 class="modal-title" id="userStatsLabel">User Statistics</h4>
@@ -195,33 +245,6 @@ t
         </div>
       </form>
 
-      <!-- Password Modal -->
-      <form class="modal fade" id="changePasswordForm" tabindex="-1" role="dialog" aria-labelledby="changePasswordLabel">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="changePasswordLabel">Change Password here</h4>
-            </div>
-
-            <div class="modal-body">
-                  <div class="form-group">
-                    <label for="playerOldPassword">Old Password</label>
-                    <input name="passwords[old]" type="password" class="form-control" id="changePassOld" placeholder="Please enter your email.">
-                  </div>
-                  <div class="form-group">
-                    <label for="playerOldPassword">New Password</label>
-                    <input name="passwords[new]" type="password" class="form-control" id="changePassNew" placeholder="Please enter password.">
-                  </div>
-                    </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-danger" id="changepasswordsubmit">Change Password!</button>
-            </div>
-          </div>
-        </div>
-      </form>
 
 
 

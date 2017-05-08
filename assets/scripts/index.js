@@ -53,7 +53,7 @@ $(() => {
   authEvents.addHandlers()
   albumEvents.addHandlers()
   ratingsEvents.addHandlers()
-  onLoadVideo(videos)
+  //onLoadVideo(videos)
   initialHide()
 
   // albumEvents.onGetAlbums()

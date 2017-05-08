@@ -7,24 +7,25 @@ const getFormFields = require('../../../lib/get-form-fields')
 // SIGNUP FUNCTIONALITY LAUNCHED WHEN CLICKED IN MODAL___________________
 const onSignUp = function (event) {
   event.preventDefault()
-  console.log(event)
-  console.log(this)
+  $('.signupmodalalert').hide()
   const data = getFormFields(this)
-  console.log(data)
-  console.log(data.credentials.password)
-  console.log(data.credentials.password_confirmation)
-  console.log(data.credentials.email)
-  if (data.credentials.password !== data.credentials.password_confirmation) {
-    console.log('Your passwords do not match')
-    $('#sign-up-failure-alert').show()
+  // Criteria Check
+
+// Blank Field Check
+  if (
+    data.credentials.password === '' || data.credentials.password_confirmation === '' || data.email === '') {
+    $('#sign-up-blank-field-failure-alert').show()
     return
   }
 
-  if (
-    data.credentials.password === '' || data.credentials.password_confirmation === '' || data.email === '') {
-    console.log('No blank fields accepted')
+// Password Match Check
+  if (data.credentials.password !== data.credentials.password_confirmation) {
+    console.log('Your passwords do not match')
+    $('#sign-up-password-failure-alert').show()
     return
   }
+
+// Create User API request
   authApi.signUp(data)
   .then(authUi.signUpSuccess)
   .catch(authUi.signUpFailure)
@@ -81,6 +82,7 @@ const addHandlers = () => {
   $(document).on('submit', '#signInForm', onSignIn)
   $('#sign-out').on('click', onSignOut)
   $('#changePasswordForm').on('submit', onChangePassword)
+  $('#signupclose').on('click', authUi.resetSignupModal)
 }
 
 module.exports = {
