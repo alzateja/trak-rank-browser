@@ -21,42 +21,64 @@ const signUpFailure = (error) => {
 }
 
 // RESET SIGNUP MODAL
-const resetSignupModal = function () {
+const resetSignUpModal = function () {
   console.log('Resetting signup Modal')
   $('.signupmodalalert').hide()
   $('.signupclear').val('')
-  $('.input-hides').show()
+  $('.signup-input-hides').show()
   $('#signUpForm').modal('hide')
 }
+
 //  SIGN IN SUCCESS AND FAILURE MESSAGING ________________________
 
 const signInSuccess = (data) => {
-console.log(store)
-console.log(data);
   console.log('signIn success ran, data is: ', data)
   store.user = data.user
 
-  resetSigninModal()
+  // Update Sign In modal
+  $('#sign-in-api-success-alert').show()
+  $('.signin-input-hides').hide()
+  $('.signinclear').val('')
 
   // Show AI ,new game, sign out, change pass, and options
-  $('#sign-in-failure-alert').hide()
-  $('.signin-hide').hide()
-  $('#signupbut').hide()
-  $('#signinbut').hide()
-  $('#launch-video').empty()
-  // Show content
-  $('.signin-show').show()
-// New report
-  $('#launch-video').empty()
+  signInShow()
+
   $('#display-current-user').text('Signed in as ' + data.user.email)
-
-
   albumEvents.onGetAlbums()
 }
 
 const signInFailure = (error) => {
   console.error('signIn error ran, error is: ', error)
-  $('#sign-in-failure-alert').show()
+  console.log(error.statusText)
+
+  if (error.statusText === 'error') {
+    $('#sign-in-api-failure-alert').show()
+    return
+  }
+
+  if (error.statusText === 'Unauthorized') {
+    $('#sign-in-api-unknown-account-alert').show()
+    return
+  }
+  // Catch all modal
+  $('#sign-in-hell-if-i-know-failure-alert').show()
+}
+
+// Reset Sign In Modal
+const resetSignInModal = function () {
+  console.log('Resetting signin Modal')
+  $('.signinmodalalert').hide()
+  $('.signinclear').val('')
+  $('#signInForm').modal('hide')
+}
+
+// Hide and show Sign In objects
+const signInShow = function () {
+  $('.signin-hide').hide()
+  $('#signupbut').hide()
+  $('#signinbut').hide()
+  $('#launch-video').empty()
+  $('.signin-show').show()
 }
 
 //  SIGN OUT SUCCESS AND FAILURE MESSAGING ______________________
@@ -110,11 +132,7 @@ const signOutLoadVideo = function (array) {
 
 
 
-const resetSigninModal = function () {
-  $('.signinmodalalert').hide()
-  $('.signinclear').val('')
-  $('#signInForm').modal('hide')
-}
+
 
 const resetChangePasswordModal = function () {
   $('.passwordchangeclear').val('')
@@ -135,5 +153,7 @@ module.exports = {
   changePasswordFailure,
   changePasswordSuccess,
   signInClose,
-  resetSignupModal
+  resetSignUpModal,
+  resetSignInModal,
+
 }

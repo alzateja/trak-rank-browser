@@ -158,26 +158,44 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
               <h4 class="modal-title" id="signInLabel">Please Sign In!</h4>
             </div>
             <div class="modal-body">
-                  <div class="form-group">
+              <!-- Sign In Modal input fields-->
+                  <div class="form-group signin-input-hides">
                     <label for="playerEmail">Email</label>
                     <input name="credentials[email]" type="email" class="form-control signinclear" id="signInPlayerEmail" placeholder="Please enter your email.">
                   </div>
-                  <div class="form-group">
+                  <div class="form-group signin-input-hides">
                     <label for="playerPassword">Password</label>
                     <input name="credentials[password]" type="password" class="form-control signinclear" id="signInPlayerPassword" placeholder="Please enter password.">
                   </div>
-                  <div id="sign-in-failure-alert" class="alert alert-danger signinmodalalert" role="alert">
+                  <!-- Sign In Modal input alerts -->
+                <div id="sign-in-blank-field-failure-alert" class="alert alert-danger signinmodalalert" role="alert">
+                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                 <span class="sr-only">Uh oh!:</span>You have a blank field! Please check doublecheck your entries and try again!</span>
+                 </div>
+                 <!-- Sign In Modal API alerts -->
+                 <div id="sign-in-api-failure-alert" class="alert alert-danger signinmodalalert" role="alert">
+                  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                  <span class="sr-only">Uh oh!:</span>Something went wrong with our server. Please try your request again!</span>
+                </div>
+                <div id="sign-in-api-unknown-account-alert" class="alert alert-danger signinmodalalert" role="alert">
+                   <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                   <span class="sr-only">Uh oh!:</span>Unathorized access. Please ensure that you have signed up for an account or use the correct.</span>
+                 </div>
+                <div id="sign-in-api-success-alert" class="alert alert-success signinmodalalert" role="alert">
+                   <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                   <span class="sr-only">Success!:</span>You have successfuly created an account</span>
+                 </div>
+                  <div id="sign-in-hell-if-i-know-failure-alert" class="alert alert-danger signinmodalalert" role="alert">
                      <span class="glyphicon glyphicon-exclamation-sign " aria-hidden="true"></span>
-                     <span class="sr-only">Uh oh!:</span> Unable to login with this email and password. Please try again!</span>
+                     <span class="sr-only">Uh oh!:</span> Hell if I know! You are a rare bread!</span>
                    </div>
                     </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary" id="signinsubmit">Sign In!</button>
+              <button type="button" class="btn btn-default" id="signinclose">Close</button>
+              <button type="submit" class="btn btn-primary signin-input-hides" id="signinsubmit">Sign In!</button>
             </div>
           </div>
         </div>

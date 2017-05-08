@@ -34,9 +34,18 @@ const onSignUp = function (event) {
 // SIGNIN FUNTIONALITY LAUNCHED WHEN CLICKED IN MODAL___________________
 const onSignIn = function (event) {
   event.preventDefault()
-
+  $('.signinmodalalert').hide()
   console.log('Sign In run')
   const data = getFormFields(this)
+  // Criteria Check
+
+// Blank Field Check
+  if (
+    data.credentials.email === '' || data.credentials.password === '') {
+    $('#sign-in-blank-field-failure-alert').show()
+    return
+  }
+
   authApi.signIn(data)
     .then(authUi.signInSuccess)
     .catch(authUi.signInFailure)
@@ -82,7 +91,8 @@ const addHandlers = () => {
   $(document).on('submit', '#signInForm', onSignIn)
   $('#sign-out').on('click', onSignOut)
   $('#changePasswordForm').on('submit', onChangePassword)
-  $('#signupclose').on('click', authUi.resetSignupModal)
+  $('#signupclose').on('click', authUi.resetSignUpModal)
+  $('#signinclose').on('click', authUi.resetSignInModal)
 }
 
 module.exports = {
