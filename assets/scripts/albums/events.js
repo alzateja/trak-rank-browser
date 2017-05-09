@@ -4,6 +4,7 @@ const api = require('./api.js')
 const ui = require('./ui.js')
 const getFormFields = require('../../../lib/get-form-fields')
 
+// CREATE AN ALBUM
 const onCreateAlbum = (event) => {
   event.preventDefault()
   $('.add-album-modal-alert').hide()
@@ -16,21 +17,19 @@ const onCreateAlbum = (event) => {
     $('#add-album-blank-field-failure-alert').show()
     return
   }
-
-// ADD Album
+// add album and update lists
   api.addAlbum(data)
     .then(ui.addAlbumSuccess)
+    .then(onGetAlbums)
     .catch(ui.addAlbumFailure)
-
-// Update albums
-  onGetAlbums()
 }
 
+// GET ALL ALBUMS
 const onGetAlbums = () => {
   api.getAlbums()
     .then(ui.getAlbumsSuccess)
-    .catch(ui.failure)
-  getUserRatings()
+    .then(getUserRatings)
+    .catch(ui.getAlbumsFailure)
 }
 
 const getUserRatings = () => {

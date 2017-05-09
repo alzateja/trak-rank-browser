@@ -2,6 +2,7 @@
 const config = require('../config.js')
 const store = require('../store')
 
+// ADD ALBUM
 const addAlbum = function (data) {
   return $.ajax({
     url: config.apiOrigin + '/albums',
@@ -10,6 +11,7 @@ const addAlbum = function (data) {
   })
 }
 
+// GET ALL ALBUMS
 const getAlbums = function () {
   return $.ajax({
     url: config.apiOrigin + '/albums', // "http://book-json.herokuapp.com/books"

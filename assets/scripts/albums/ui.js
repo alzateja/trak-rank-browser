@@ -38,6 +38,10 @@ const getAlbumsSuccess = (data) => {
   renderAlbums(0)
 }
 
+const getAlbumsFailure = (error) => {
+  console.log('Unimaginable failure', error)
+}
+
 // GET RATINGS
 const getRatingsSuccess = (data) => {
   console.log('Get All Ratings success')
@@ -149,15 +153,13 @@ const selectPage = function (event) {
   renderAlbums(start)
 }
 
-
-
 module.exports = {
   addAlbumFailure,
   addAlbumSuccess,
   getAlbumsSuccess,
+  getAlbumsFailure,
   getRatingsSuccess,
   renderAlbums,
   resetRatingModal,
   resetAlbumModal
-
 }
