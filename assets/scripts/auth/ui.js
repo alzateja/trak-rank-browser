@@ -1,8 +1,7 @@
 'use strict'
 
-let store = require('../store')
+const store = require('../store')
 const albumEvents = require('../albums/events.js')
-const indexFile = require('../index')
 
 // Sign UP SUCCESS AND FAILURE MESSAGING ________________________
 const signUpSuccess = (data) => {
@@ -10,6 +9,7 @@ const signUpSuccess = (data) => {
   $('#sign-up-api-success-alert').show()
   $('.signup-input-hides').hide()
   $('.signupclear').val('')
+  console.log('Store looks like ', store)
 }
 
 const signUpFailure = (error) => {
@@ -18,6 +18,7 @@ const signUpFailure = (error) => {
     return
   }
   $('#sign-up-api-failure-alert').show()
+  console.log('Store looks like ', store)
 }
 
 // RESET SIGNUP MODAL
@@ -45,6 +46,7 @@ const signInSuccess = (data) => {
 
   $('#display-current-user').text('Signed in as ' + data.user.email)
   albumEvents.onGetAlbums()
+  console.log('Store looks like ', store)
 }
 
 const signInFailure = (error) => {
@@ -62,12 +64,14 @@ const signInFailure = (error) => {
   }
   // Catch all modal
   $('#sign-in-hell-if-i-know-failure-alert').show()
+  console.log('Store looks like ', store)
 }
 
 // Reset Sign In Modal
 const resetSignInModal = function () {
   console.log('Resetting signin Modal')
   $('.signinmodalalert').hide()
+  $('.signin-input-hides').show()
   $('.signinclear').val('')
   $('#signInForm').modal('hide')
 }
@@ -75,72 +79,77 @@ const resetSignInModal = function () {
 // Hide and show Sign In objects
 const signInShow = function () {
   $('.signin-hide').hide()
-  $('#signupbut').hide()
-  $('#signinbut').hide()
   $('#launch-video').empty()
   $('.signin-show').show()
+}
+
+//  Change Password SUCCESS AND FAILURE MESSAGING ______________________________
+
+const changePasswordSuccess = (data) => {
+  console.log('Password was succesfully changed, data is: ', data)
+  $('#change-pass-api-success-alert').show()
+  $('.changepass-input-hides').hide()
+  $('.passwordchangeclear').val('')
+  console.log('Store looks like ', store)
+}
+
+const changePasswordFailure = (error) => {
+  console.log('Password was not succesfully changed', error)
+
+  if (error.statusText === 'error') {
+    $('#change-pass-api-failure-alert').show()
+    return
+  }
+  if (error.statusText === 'Bad Request') {
+    $('#change-pass-api-incorrect-password-alert').show()
+    return
+  }
+  console.log('Store looks like ', store)
+}
+
+const resetChangePasswordModal = function () {
+  console.log('Resetting signin Modal')
+  $('.changepassmodalalert').hide()
+  $('.changepass-input-hides').show()
+  $('.passwordchangeclear').val('')
+  $('#changePasswordForm').modal('hide')
 }
 
 //  SIGN OUT SUCCESS AND FAILURE MESSAGING ______________________
 
 const signOutSuccess = () => {
   console.log('signOut success ran, and nothing was returned')
-
-// Hide elements
-  console.log(store.user)
-  $('.signin-hide').show()
+  console.log('Store looks like ', store)
 
   store.user = null
-  console.log(store.user)
   $('#display-current-user').text('')
-  $('.signin-hide').show()
-  $('.signin-show').hide()
-  $('#content').empty()
-  let array = store.videos
-  signOutLoadVideo(array)
+
+  signOutShow()
+  signOutLoadVideo()
+  console.log('Store looks like ', store)
 }
 
 const signOutFailure = (error) => {
   console.error('signOut error ran, error is: ', error)
+  $('#signOutForm').modal('show')
+  $('#signout-api-failure-alert').show()
+  console.log('Store looks like ', store)
 }
 
-//  Change Password SUCCESS AND FAILURE MESSAGING ______________________________
-
-const changePasswordSuccess = (data) => {
-  console.log('Password was succesfully changed')
-  $('#changePasswordForm').modal('hide')
-  $('#changePassNew').val('')
-  $('#changePassOld').val('')
+const signOutShow = function () {
+  $('.signin-hide').show()
+  $('.signin-show').hide()
+  $('#content').empty()
 }
 
-const changePasswordFailure = (error) => {
-  console.log('Password was not succesfully changed', error)
-}
-
-const signInClose = function () {
-  $('#signInPlayerPassword').val('')
-  $('#signInPlayerEmail').val('')
-}
-
-const signOutLoadVideo = function (array) {
-  console.log(store)
-  let options = array.length
-  let random = Math.floor(Math.random() * (options - 0 + 1)) + 0
-  let video = array[random]
+const signOutLoadVideo = function () {
+  const array = store.videos
+  const numOptions = store.videos.length
+  console.log(array)
+  console.log(numOptions)
+  const random = Math.floor(Math.random() * (numOptions - 0 + 1)) + 0
+  const video = array[random]
   $('#launch-video').append('<iframe class="embed-responsive-item" src="' + video + '&autoplay=1"></iframe>')
-}
-
-
-
-
-
-const resetChangePasswordModal = function () {
-  $('.passwordchangeclear').val('')
-  $('#changePasswordForm').modal('hide')
-}
-
-const addHandlers = () => {
-
 }
 
 module.exports = {
@@ -152,8 +161,9 @@ module.exports = {
   signOutSuccess,
   changePasswordFailure,
   changePasswordSuccess,
-  signInClose,
   resetSignUpModal,
   resetSignInModal,
+  resetChangePasswordModal,
+  signOutShow
 
 }

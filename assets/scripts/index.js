@@ -39,12 +39,18 @@ const initialHide = function () {
   $('.signin-show').hide()
 }
 
-const onLoadVideo = function (array) {
-  store.videos = array
+const storeVideos = function () {
+  store.videos = videos
   console.log(store)
-  let options = array.length
-  let random = Math.floor(Math.random() * (options - 0 + 1)) + 0
-  let video = array[random]
+}
+
+const onLoadVideo = function () {
+  const array = store.videos
+  const numOptions = store.videos.length
+  console.log(array)
+  console.log(numOptions)
+  const random = Math.floor(Math.random() * (numOptions - 0 + 1)) + 0
+  const video = array[random]
   $('#launch-video').append('<iframe class="embed-responsive-item" src="' + video + '&autoplay=1"></iframe>')
 }
 
@@ -53,9 +59,9 @@ $(() => {
   authEvents.addHandlers()
   albumEvents.addHandlers()
   ratingsEvents.addHandlers()
-  //onLoadVideo(videos)
   initialHide()
-
+  storeVideos()
+  // onLoadVideo()
   // albumEvents.onGetAlbums()
 })
 

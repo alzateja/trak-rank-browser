@@ -51,6 +51,32 @@ const onSignIn = function (event) {
     .catch(authUi.signInFailure)
 }
 
+// CHANGE PASSWORD FUNTIONALITY LAUNCHED WHEN CLICKED IN MODAL___________________
+const onChangePassword = function (event) {
+  event.preventDefault()
+  $('.changepassmodalalert').hide()
+  console.log('Changing password run')
+  const data = getFormFields(this)
+
+  if (
+    data.passwords.old === '' || data.passwords.new === '') {
+    $('#change-pass-blank-field-failure-alert').show()
+    console.log('No blank fields accepted')
+    return
+  }
+
+  if (
+    data.passwords.old === data.passwords.new) {
+    $('#change-pass-same-password-failure-alert').show()
+    console.log('same password')
+    return
+  }
+
+  authApi.changePassword(data)
+    .then(authUi.changePasswordSuccess)
+    .catch(authUi.changePasswordFailure)
+}
+
 // SIGNOUT FUNCTION EXECUTED WHEN BUTTON CLICKED___________________
 const onSignOut = function (event) {
   event.preventDefault()
@@ -64,27 +90,6 @@ const onSignOut = function (event) {
     .catch(authUi.signOutFailure)
 }
 
-// CHANGE PASSWORD FUNTIONALITY LAUNCHED WHEN CLICKED IN MODAL___________________
-const onChangePassword = function (event) {
-  event.preventDefault()
-  console.log('Changing password run')
-  const data = getFormFields(this)
-  console.log(data)
-  if (store.user === undefined) {
-    console.log('Not signed In. Please Sign In to change password')
-    return
-  }
-  if (
-    data.passwords.old === '' || data.passwords.new === '') {
-    console.log('No blank fields accepted')
-    return
-  }
-
-  authApi.changePassword(data)
-    .then(authUi.changePasswordSuccess)
-    .catch(authUi.changePasswordFailure)
-}
-
 // HANDLER TO ASSIGN AUTHORIZATION FUNCTIONS TO OBJECTS___________________
 const addHandlers = () => {
   $(document).on('submit', '#signUpForm', onSignUp)
@@ -93,6 +98,7 @@ const addHandlers = () => {
   $('#changePasswordForm').on('submit', onChangePassword)
   $('#signupclose').on('click', authUi.resetSignUpModal)
   $('#signinclose').on('click', authUi.resetSignInModal)
+  $('#changepasswordclose').on('click', authUi.resetChangePasswordModal)
 }
 
 module.exports = {

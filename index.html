@@ -118,28 +118,33 @@
                             <label for="playerPasswordConfirm">Password Confirmation</label>
                             <input name="credentials[password_confirmation]" type="password" class="form-control signupclear " id="signUpPlayerPasswordConfirm" placeholder="Confirm Password.">
                           </div>
-
                           <!-- Sign Up Modal input alerts -->
                           <div id="sign-up-password-failure-alert" class="alert alert-danger signupmodalalert" role="alert">
                              <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                             <span class="sr-only">Uh oh!:</span>Your passwords do not match! Please try again!</span>
+                             <span class="sr-only">Uh oh!:</span>
+                             Your passwords do not match! Please try again!
                            </div>
                            <div id="sign-up-blank-field-failure-alert" class="alert alert-danger signupmodalalert" role="alert">
                               <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                              <span class="sr-only">Uh oh!:</span>You have a blank field! Please check doublecheck your entries and try again!</span>
+                              <span class="sr-only">Uh oh!:</span>
+                              You seem to have some blank fields! Please check doublecheck your entries and try again!
                             </div>
                           <!-- Sign Up Modal API alerts -->
                             <div id="sign-up-api-failure-alert" class="alert alert-danger signupmodalalert" role="alert">
                                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                               <span class="sr-only">Uh oh!:</span>Something went wrong with our server. Please try your request again!</span>
+                               <span class="sr-only">Uh oh!:</span>
+                               Something went wrong with our server. Please try your request again!
                              </div>
                              <div id="sign-up-api-duplicate-account-alert" class="alert alert-danger signupmodalalert" role="alert">
                                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                                <span class="sr-only">Uh oh!:</span>Someone already seems to have registered under that email account. Please contact our admins.</span>
+                                <span class="sr-only">Uh oh!:</span>
+                                Someone already seems to have registered under that email account. Please try signing in.
                               </div>
+                              <!-- Sign Up Success API alerts -->
                              <div id="sign-up-api-success-alert" class="alert alert-success signupmodalalert" role="alert">
                                 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                                <span class="sr-only">Success!:</span>You have successfuly created an account</span>
+                                <span class="sr-only">Success!:</span>
+                                You have successfuly created an account! Sign in now to enjoy TrakRank!
                               </div>
 
                       </div>
@@ -173,25 +178,32 @@
                   <!-- Sign In Modal input alerts -->
                 <div id="sign-in-blank-field-failure-alert" class="alert alert-danger signinmodalalert" role="alert">
                  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                 <span class="sr-only">Uh oh!:</span>You have a blank field! Please check doublecheck your entries and try again!</span>
+                 <span class="sr-only">Uh oh!:</span>
+                 You seem to have some blank fields! Please check doublecheck your entries and try again!
                  </div>
                  <!-- Sign In Modal API alerts -->
                  <div id="sign-in-api-failure-alert" class="alert alert-danger signinmodalalert" role="alert">
                   <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                  <span class="sr-only">Uh oh!:</span>Something went wrong with our server. Please try your request again!</span>
+                  <span class="sr-only">Uh oh!:</span>
+                  Something went wrong with our server. Please try your request again!
                 </div>
                 <div id="sign-in-api-unknown-account-alert" class="alert alert-danger signinmodalalert" role="alert">
                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                   <span class="sr-only">Uh oh!:</span>Unathorized access. Please ensure that you have signed up for an account or use the correct.</span>
+                   <span class="sr-only">Uh oh!:</span>
+                   Unathorized access. Please ensure that you have signed up for an account and have used the correct password.
                  </div>
+                 <div id="sign-in-hell-if-i-know-failure-alert" class="alert alert-danger signinmodalalert" role="alert">
+                    <span class="glyphicon glyphicon-exclamation-sign " aria-hidden="true"></span>
+                    <span class="sr-only">Uh oh!:</span>
+                    Hell if I know! You are a rare bread!
+                  </div>
+                 <!-- Sign In Success API alerts -->
                 <div id="sign-in-api-success-alert" class="alert alert-success signinmodalalert" role="alert">
                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                   <span class="sr-only">Success!:</span>You have successfuly created an account</span>
+                   <span class="sr-only">Success!:</span>
+                   You have successfuly signed in! Enjoy TrakRank!
                  </div>
-                  <div id="sign-in-hell-if-i-know-failure-alert" class="alert alert-danger signinmodalalert" role="alert">
-                     <span class="glyphicon glyphicon-exclamation-sign " aria-hidden="true"></span>
-                     <span class="sr-only">Uh oh!:</span> Hell if I know! You are a rare bread!</span>
-                   </div>
+
                     </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" id="signinclose">Close</button>
@@ -208,29 +220,86 @@
           <div class="modal-content">
 
             <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="changePasswordLabel">Change Password here</h4>
+              <h4 class="modal-title" id="changePasswordLabel">Change Your Password Here!</h4>
             </div>
 
             <div class="modal-body">
-                  <div class="form-group">
+                  <div class="form-group changepass-input-hides">
                     <label for="playerOldPassword">Old Password</label>
                     <input name="passwords[old]" type="password" class="form-control passwordchangeclear" id="changePassOld" placeholder="Please enter your email.">
                   </div>
-                  <div class="form-group">
+                  <div class="form-group changepass-input-hides">
                     <label for="playerOldPassword">New Password</label>
                     <input name="passwords[new]" type="password" class="form-control passwordchangeclear" id="changePassNew" placeholder="Please enter password.">
                   </div>
+                  <!-- Password Modal input alerts -->
+                <div id="change-pass-blank-field-failure-alert" class="alert alert-danger changepassmodalalert" role="alert">
+                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                 <span class="sr-only">Uh oh!:</span>
+                 You have a blank field! Please check doublecheck your entries and try again!
+                 </div>
+                 <div id="change-pass-same-password-failure-alert" class="alert alert-danger changepassmodalalert" role="alert">
+                  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                  <span class="sr-only">Uh oh!:</span>
+                  The old and new passwords you entered are the same! Please make sure they are different!
+                  </div>
+                 <!-- Password Modal API alerts -->
+                 <div id="change-pass-api-failure-alert" class="alert alert-danger changepassmodalalert" role="alert">
+                  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                  <span class="sr-only">Uh oh!:</span>
+                  Something went wrong with our server. Please try your request again!
+                </div>
+                <div id="change-pass-api-incorrect-password-alert" class="alert alert-danger changepassmodalalert" role="alert">
+                   <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                   <span class="sr-only">Uh oh!:</span>
+                   The password you entered does not seem to match our records.
+                 </div>
+                 <!-- Sign In Success API alerts -->
+                <div id="change-pass-api-success-alert" class="alert alert-success changepassmodalalert" role="alert">
+                   <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                   <span class="sr-only">Success!:</span>
+                   You have successfuly changed you password.
+                 </div>
                     </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-danger" id="changepasswordsubmit">Change Password!</button>
+              <button type="button" class="btn btn-default" id="changepasswordclose">Close</button>
+              <button type="submit" class="btn btn-danger changepass-input-hides" id="changepasswordsubmit">Change Password!</button>
             </div>
           </div>
         </div>
       </form>
 
+
+      <!-- Sign Out Modal -->
+      <form class="modal fade" id="signOutForm" tabindex="-1" role="dialog" aria-labelledby="signOutLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+
+            <div class="modal-header">
+              <h4 class="modal-title" id="signOutLabel">Sorry! Our server is down</h4>
+            </div>
+
+            <div class="modal-body">
+                 <!-- Sign Out Modal API alerts -->
+                 <div id="signout-api-failure-alert" class="alert alert-danger changepassmodalalert" role="alert">
+                  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                  <span class="sr-only">Uh oh!:</span>
+                  Something went wrong with our server. Please try your request again!
+                </div>
+                    </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </form>
 <!-- END OF AUTHORIZATION MODALS -->
+
+
+
+
+
+
       <!-- User Stats -->
       <form class="modal fade" id="userStatsForm" tabindex="-1" role="dialog" aria-labelledby="userStatsLabel">
         <div class="modal-dialog" role="document">
