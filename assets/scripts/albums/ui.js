@@ -21,7 +21,7 @@ const addAlbumFailure = (error) => {
   }
 }
 
-const resetAlbumModal = () => {
+const resetAddAlbumModal = () => {
   console.log('Resetting the Add Album Modal')
   $('.add-album-modal-alert').hide()
   $('.add-album-input-hides').show()
@@ -47,7 +47,6 @@ const getRatingsSuccess = (data) => {
   console.log('Get All Ratings success! You have ratings:' + data.user_ratings.length)
   console.log('Your data looks like ', data)
   store.user_ratings = data.user_ratings
-  calculateStats()
 }
 
 const getRatingsFailure = (error) => {
@@ -57,50 +56,63 @@ const getRatingsFailure = (error) => {
 // CALCULATE STATS
 const calculateStats = function () {
   console.log(store.albums)
-  let totalAlbums = store.albums.length
-
+  const totalAlbums = store.albums.length
   let completeStat = 0
   let progressStat = 0
   let notStartedStat = 0
   let ratingSum = 0
+  let ratingCount = 0
 
+// If no user_ratings then Not Started equals ALbums
   if (store.user_ratings.length === 0) {
     notStartedStat === totalAlbums
   } else {
+    // Else loop through user ratings
     for (let i = 0; i < store.user_ratings.length; i++) {
-
+      // If current rating is completed Increment the completed count
       if (store.user_ratings[i].status === 'Completed') {
         completeStat++
       }
+      // If current rating is in Progress Increment the in Progress count
       if (store.user_ratings[i].status === 'In progress') {
-          progressStat++
-        }
-
-      if (store.user_ratings[i].ratings > 0 ){
-        ratingSum += store.user_ratings[i].ratings
+        progressStat++
       }
-
+      // If user rating is greater than 0 save rating into the sum
+      if (store.user_ratings[i].ratings > 0) {
+        ratingSum += store.user_ratings[i].ratings
+        ratingCount++
+      }
     }
-
-    notStartedStat = totalAlbums - progressStat - completeStat
-
-    let avg = ratingSum / (progressStat + completeStat)
-    console.log('Total Albums ' + totalAlbums)
-    console.log('Complete ' + completeStat)
-    console.log('In Progress ' + progressStat);
-    console.log('Not Started ' + notStartedStat);
-    console.log(store.user_ratings)
-
-   $('#album-count').text('Total Albums: ' + totalAlbums)
-   $('#album-completed').text('Completed: ' + completeStat)
-   $('#album-in-progress').text('In Progress: ' + progressStat)
-   $('#album-not-started').text('Not Started: ' + notStartedStat)
-   $('#album-avg-ratings').text('Avg. Rating: ' + avg)
-
   }
+    // Finish Calculating Stats
+  notStartedStat = totalAlbums - progressStat - completeStat
+  const avg = (ratingSum / ratingCount).toFixed(2)
 
+    // Console log counts
+  console.log('Total Albums ' + totalAlbums)
+  console.log('Complete ' + completeStat)
+  console.log('In Progress ' + progressStat)
+  console.log('Not Started ' + notStartedStat)
+  console.log(store.user_ratings)
+  console.log(avg)
 
+    // Update Modals
+  $('#album-count').text(totalAlbums)
+  $('#album-completed').text(completeStat)
+  $('#album-in-progress').text(progressStat)
+  $('#album-not-started').text(notStartedStat)
+  if (avg > 0) {
+    $('#album-avg-ratings').text(avg)
+  }
+  else {
+    $('#album-avg-ratings').text('No ratings on file.')
+  }
+}
 
+const resetUserStatsModal = () => {
+  console.log('Resetting the User StatsModal')
+  $('.user-stat-display').text('')
+  $('#userStatsForm').modal('hide')
 }
 
 // UI Rendering
@@ -149,23 +161,16 @@ const selectPage = function (event) {
   renderAlbums(start)
 }
 
-const resetRatingModal = () => {
-  console.log('Resetting the Add Album Modal')
-  $('.album-input').text('')
-  $('.album-input').val('')
-  $('#commentDisplay').val('')
-
-}
-
-
 module.exports = {
   addAlbumFailure,
   addAlbumSuccess,
+  resetAddAlbumModal,
   getAlbumsSuccess,
   getAlbumsFailure,
   getRatingsSuccess,
   getRatingsFailure,
-  renderAlbums,
-  resetRatingModal,
-  resetAlbumModal
+  calculateStats,
+  resetUserStatsModal,
+  renderAlbums
+
 }

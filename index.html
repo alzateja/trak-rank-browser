@@ -20,7 +20,7 @@
     <ul class="nav nav-pills pull-right">
     <li role="presentation" class="active" id="user-albums-tab"><a href="#" id="user-albums">Home</a></li>
     <li role="presentation" class="signin-show" id="create-album-tab"><a href="#" data-toggle="modal" data-target="#addAlbumForm">Create Album</a></li>
-    <li role="presentation" class="signin-show"  id="user-stats-tab"><a href="#"  data-toggle="modal" data-target="#userStatsForm">User-Stats</a></li>
+    <li role="presentation" class="signin-show"  id="user-stats-tab"><a href="#" >User Stats</a></li>
     <li class="dropdown" role="presentation" id="user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" >User Options<span class="caret"></span></a>
             <ul class="dropdown-menu">
@@ -354,31 +354,33 @@
       <form class="modal fade" id="userStatsForm" tabindex="-1" role="dialog" aria-labelledby="userStatsLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
-
             <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
               <h4 class="modal-title" id="userStatsLabel">User Statistics</h4>
             </div>
-
             <div class="modal-body">
               <div class="form-group">
-              <label id="album-count">Total Albums:</label>
+              <label><strong>Total Albums:</strong></label>
+              <p id="album-count" class="user-stat-display"></p>
             </div>
             <div class="form-group">
-              <label id="album-completed">Completed:</label>
+              <label><strong>Completed:</strong></label>
+              <p id="album-completed" class="user-stat-display"></p>
             </div>
             <div class="form-group">
-              <label id="album-in-progress">In Progress:</label>
+              <label><strong>In Progress:</strong></label>
+              <p id="album-in-progress" class="user-stat-display"></p>
             </div>
             <div class="form-group">
-              <label id="album-not-started">Not Started:</label>
+              <label><strong>Not Started:</strong></label>
+              <p id="album-not-started" class="user-stat-display"></p>
             </div>
-            <div class="form-group">
-              <label id="album-avg-ratings">Avg. Rating:</label>
-            </div>
+             <div class="form-group">
+              <label><strong>Avg. Rating:</strong></label>
+              <p id="album-avg-ratings" class="user-stat-display"></p>
+          </div>
                     </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-default" id="userstatsclose">Close</button>
             </div>
           </div>
         </div>

@@ -37,14 +37,22 @@ const getUserRatings = () => {
   console.log('run get user ratings')
   api.getRatings()
     .then(ui.getRatingsSuccess)
+    .then(ui.calculateStats)
     .catch(ui.getRatingsFailure)
+}
+
+// Function for User Ratings button
+const launchUserRatingsModal = () => {
+  getUserRatings()
+  $('#userStatsForm').modal('show')
 }
 
 // Add Album Handlers
 const addHandlers = () => {
   $('#addAlbumForm').on('submit', onCreateAlbum)
-  $('#userStatsForm').on('submit', getUserRatings)
-  $('#createalbumclose').on('click', ui.resetAlbumModal)
+  $('#user-stats-tab').on('click', launchUserRatingsModal)
+  $('#createalbumclose').on('click', ui.resetAddAlbumModal)
+  $('#userstatsclose').on('click', ui.resetUserStatsModal)
 }
 
 module.exports = {
