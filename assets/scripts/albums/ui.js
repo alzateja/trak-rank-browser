@@ -44,18 +44,14 @@ const getAlbumsFailure = (error) => {
 
 // GET RATINGS
 const getRatingsSuccess = (data) => {
-  console.log('Get All Ratings success')
-  console.log(data)
+  console.log('Get All Ratings success! You have ratings:' + data.user_ratings.length)
+  console.log('Your data looks like ', data)
   store.user_ratings = data.user_ratings
   calculateStats()
 }
 
-const resetRatingModal = () => {
-  console.log('Resetting the Add Album Modal')
-  $('.album-input').text('')
-  $('.album-input').val('')
-  $('#commentDisplay').val('')
-
+const getRatingsFailure = (error) => {
+  console.log('Get All Ratings was a failure', error)
 }
 
 // CALCULATE STATS
@@ -153,12 +149,22 @@ const selectPage = function (event) {
   renderAlbums(start)
 }
 
+const resetRatingModal = () => {
+  console.log('Resetting the Add Album Modal')
+  $('.album-input').text('')
+  $('.album-input').val('')
+  $('#commentDisplay').val('')
+
+}
+
+
 module.exports = {
   addAlbumFailure,
   addAlbumSuccess,
   getAlbumsSuccess,
   getAlbumsFailure,
   getRatingsSuccess,
+  getRatingsFailure,
   renderAlbums,
   resetRatingModal,
   resetAlbumModal

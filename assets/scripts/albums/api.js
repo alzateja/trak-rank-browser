@@ -19,8 +19,8 @@ const getAlbums = function () {
   })
 }
 
-let getRatings = function () {
-  console.log("get ratings")
+// GET ALL USER RATINGS
+const getRatings = function () {
   return $.ajax({
     url: config.apiOrigin + '/my-ratings/', // "http://book-json.herokuapp.com/books"
     method: 'GET',

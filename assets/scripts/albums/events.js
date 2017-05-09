@@ -32,14 +32,15 @@ const onGetAlbums = () => {
     .catch(ui.getAlbumsFailure)
 }
 
+// GET ALL User Ratings
 const getUserRatings = () => {
-  console.log('try')
+  console.log('run get user ratings')
   api.getRatings()
     .then(ui.getRatingsSuccess)
-    .catch(ui.failure)
+    .catch(ui.getRatingsFailure)
 }
 
-// Add Albums
+// Add Album Handlers
 const addHandlers = () => {
   $('#addAlbumForm').on('submit', onCreateAlbum)
   $('#userStatsForm').on('submit', getUserRatings)
