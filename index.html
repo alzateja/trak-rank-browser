@@ -298,6 +298,56 @@
 
 
 
+      <!-- Add  Album modal -->
+      <form  class="modal fade" id="addAlbumForm" tabindex="-1" role="dialog" aria-labelledby="addAlbumLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="addAlbumLabel">Add a new Album</h4>
+            </div>
+            <div class="modal-body">
+                  <div class="form-group add-album-input-hides">
+                    <label for="albumArtist">Artist(Required):</label>
+                    <input name="album[artist]" type="text" class="form-control album-input" id="setArtist" placeholder="Please enter the artist.">
+                  </div>
+                  <div class="form-group add-album-input-hides">
+                    <label for="albumTitle">Album(Required):</label>
+                    <input name="album[album]" type="text" class="form-control album-input" id="setAlbum" placeholder="Please enter the album name.">
+                  </div>
+                  <div class="form-group add-album-input-hides">
+                    <label for="albumYear">Year:</label>
+                    <input name="album[year]" type="text" class="form-control album-input" id="setYear" placeholder="Please enter the album year.">
+                  </div>
+                  <div class="form-group add-album-input-hides">
+                    <label for="albumImage">Image:</label>
+                    <input name="album[image]" type="text" class="form-control album-input" id="setImage" placeholder="Please enter the url for the album image.">
+                  </div>
+                  <!-- Add Album Modal input alerts -->
+                  <div id="add-album-blank-field-failure-alert" class="alert alert-danger add-album-modal-alert" role="alert">
+                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                 <span class="sr-only">Uh oh!:</span>
+                 You have missing required fields! Please check doublecheck your entries and try again!
+                 </div>
+                 <!-- Add Album Modal API alerts -->
+                 <div id="add-album-api-failure-alert" class="alert alert-danger add-album-modal-alert" role="alert">
+                  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                  <span class="sr-only">Uh oh!:</span>
+                  Something went wrong with our server. Please try your request again!
+                </div>
+                 <!-- Add Album Success API alerts -->
+                <div id="add-album-api-success-alert" class="alert alert-success add-album-modal-alert" role="alert">
+                   <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                   <span class="sr-only">Success!:</span>
+                   You have successfuly changed you password.
+                 </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" id="createalbumclose">Close</button>
+              <button type="submit" class="btn btn-primary" id="createalbumsubmit">Submit</button>
+            </div>
+          </div>
+        </div>
+      </form>
 
 
       <!-- User Stats -->
@@ -425,43 +475,6 @@
       </form>
 
 
-
-<!-- class="modal fade" -->
-
-
-      <!-- Ad  Album modal -->
-      <form  class="modal fade" id="addAlbumForm" tabindex="-1" role="dialog" aria-labelledby="addAlbumLabel">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="addAlbumLabel">Add a new Album</h4>
-            </div>
-            <div class="modal-body">
-                  <div class="form-group">
-                    <label for="albumArtist">Artist(Required):</label>
-                    <input name="album[artist]" type="text" class="form-control album-input" id="setArtist" placeholder="Please enter the artist.">
-                  </div>
-                  <div class="form-group">
-                    <label for="albumTitle">Album(Required):</label>
-                    <input name="album[album]" type="text" class="form-control album-input" id="setAlbum" placeholder="Please enter the album name.">
-                  </div>
-                  <div class="form-group">
-                    <label for="albumYear">Year:</label>
-                    <input name="album[year]" type="text" class="form-control album-input" id="setYear" placeholder="Please enter the album year.">
-                  </div>
-                  <div class="form-group">
-                    <label for="albumImage">Image:</label>
-                    <input name="album[image]" type="text" class="form-control album-input" id="setImage" placeholder="Please enter the url for the album image.">
-                  </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary" id="createalbumsubmit">Submit</button>
-            </div>
-          </div>
-        </div>
-      </form>
 
     </body>
 </html>

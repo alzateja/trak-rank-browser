@@ -1,21 +1,36 @@
 'use strict'
-const ratingEvents = require('../ratings/events.js')
 const modalEvents = require('../modal-load/events.js')
-
-let store = require('../store')
+const store = require('../store')
 const showAlbumsTemplate = require('../templates/album-listing.handlebars')
 
-// SUCCESS
-const addAlbumSuccess = () => {
-  console.log('Album add sucess')
-  resetRatingModal()
+// ADD AN ALBUM
+const addAlbumSuccess = (data) => {
+  console.log('Album add success', data)
+  $('#add-album-api-success-alert').show()
+  $('.add-album-input-hides').hide()
+  $('#createalbumsubmit').hide()
 }
 
 const addAlbumFailure = (error) => {
   console.log('Album failure')
   console.error(error)
+
+  if (error.statusText === 'error') {
+    $('#add-album-api-failure-alert').show()
+    return
+  }
 }
 
+const resetAlbumModal = () => {
+  console.log('Resetting the Add Album Modal')
+  $('.add-album-modal-alert').hide()
+  $('.add-album-input-hides').show()
+  $('.album-input').val('')
+  $('#createalbumsubmit').show()
+  $('#addAlbumForm').modal('hide')
+}
+
+// GET ALL ALBUMS
 const getAlbumsSuccess = (data) => {
   console.log(data)
   store.albums = data.albums
@@ -23,6 +38,7 @@ const getAlbumsSuccess = (data) => {
   renderAlbums(0)
 }
 
+// GET RATINGS
 const getRatingsSuccess = (data) => {
   console.log('Get All Ratings success')
   console.log(data)
@@ -30,6 +46,15 @@ const getRatingsSuccess = (data) => {
   calculateStats()
 }
 
+const resetRatingModal = () => {
+  console.log('Resetting the Add Album Modal')
+  $('.album-input').text('')
+  $('.album-input').val('')
+  $('#commentDisplay').val('')
+
+}
+
+// CALCULATE STATS
 const calculateStats = function () {
   console.log(store.albums)
   let totalAlbums = store.albums.length
@@ -54,8 +79,6 @@ const calculateStats = function () {
       if (store.user_ratings[i].ratings > 0 ){
         ratingSum += store.user_ratings[i].ratings
       }
-
-
 
     }
 
@@ -126,13 +149,7 @@ const selectPage = function (event) {
   renderAlbums(start)
 }
 
-const resetRatingModal = () => {
-  console.log('Resetting the Modal')
-  $('.album-input').text('')
-  $('.album-input').val('')
-  $('#commentDisplay').val('')
-  $('#addAlbumForm').modal('hide')
-}
+
 
 module.exports = {
   addAlbumFailure,
@@ -140,6 +157,7 @@ module.exports = {
   getAlbumsSuccess,
   getRatingsSuccess,
   renderAlbums,
-  resetRatingModal
+  resetRatingModal,
+  resetAlbumModal
 
 }

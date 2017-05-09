@@ -122,10 +122,11 @@ const signOutSuccess = () => {
   console.log('Store looks like ', store)
 
   store.user = null
+  store.user_ratings = null
   $('#display-current-user').text('')
 
   signOutShow()
-  signOutLoadVideo()
+  // signOutLoadVideo()
   console.log('Store looks like ', store)
 }
 

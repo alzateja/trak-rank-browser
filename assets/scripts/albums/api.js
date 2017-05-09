@@ -1,19 +1,19 @@
 'use strict'
 const config = require('../config.js')
-let store = require('../store')
+const store = require('../store')
 
-  let getAlbums = function () {
-  return $.ajax({
-    url: config.apiOrigin + '/albums', // "http://book-json.herokuapp.com/books"
-    method: 'GET'
-  })
-}
-
-let addAlbum = function (data) {
+const addAlbum = function (data) {
   return $.ajax({
     url: config.apiOrigin + '/albums',
     method: 'POST',
     data
+  })
+}
+
+const getAlbums = function () {
+  return $.ajax({
+    url: config.apiOrigin + '/albums', // "http://book-json.herokuapp.com/books"
+    method: 'GET'
   })
 }
 

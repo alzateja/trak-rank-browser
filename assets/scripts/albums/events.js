@@ -6,17 +6,23 @@ const getFormFields = require('../../../lib/get-form-fields')
 
 const onCreateAlbum = (event) => {
   event.preventDefault()
-  let formValues = $('#addAlbumForm')[0]
+  $('.add-album-modal-alert').hide()
+  const formValues = $('#addAlbumForm')[0]
   const data = getFormFields(formValues)
-  console.log('run add Album')
-  console.log(data)
+  console.log('run add Album', data)
+
+  // Blank Field Check
+  if (data.album.album === '' || data.album.artist === '') {
+    $('#add-album-blank-field-failure-alert').show()
+    return
+  }
 
 // ADD Album
   api.addAlbum(data)
     .then(ui.addAlbumSuccess)
-    .catch(ui.failure)
+    .catch(ui.addAlbumFailure)
 
-    // Update store
+// Update albums
   onGetAlbums()
 }
 
@@ -38,6 +44,7 @@ const getUserRatings = () => {
 const addHandlers = () => {
   $('#addAlbumForm').on('submit', onCreateAlbum)
   $('#userStatsForm').on('submit', getUserRatings)
+  $('#createalbumclose').on('click', ui.resetAlbumModal)
 }
 
 module.exports = {
