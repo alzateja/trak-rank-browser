@@ -41,11 +41,6 @@ blockquote footer {
   background: url('https://s-media-cache-ak0.pinimg.com/736x/c7/f2/70/c7f2708fd7b8d98a1b84f00330229b4c.jpg');
 }
 
-.thumbnail-image{
-  height:100%;
-  width: 100%;
-
-}
 
 .landing-image {
   height:100%;
@@ -70,4 +65,12 @@ blockquote footer {
 
 .launch {
   margin-bottom:20%;
+}
+
+// Thumbnail Sizing
+
+.thumbnail-image{
+  height: 100%;
+  width: 100%;
+
 }
