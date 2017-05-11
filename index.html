@@ -394,91 +394,109 @@
 
 
       <!-- View Album modal -->
-      <form class="modal fade" id="viewAlbumForm" tabindex="-1" role="dialog" aria-labelledby="changePasswordLabel">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
+<form class="modal fade bd-example-modal-lg" id="viewAlbumForm" tabindex="-1" role="dialog" aria-labelledby="viewAlbumLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <!-- MODAL HEADER -->
+      <div class="modal-header">
+      <h2 class="modal-title" id="viewAlbumLabel">Current Album</h2>
+      </div>
+      <!-- MODAL HEADER ClOSED-->
+      <!-- MODAL BODY -->
+      <div class="modal-body">
+      <div class="container-fluid">
+        <!-- Api  Failure Messaging-->
+        <div id="view-album-api-failure-alert" class="alert alert-danger view-album-modal-alert" role="alert">
+         <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+         <span class="sr-only">Uh oh!:</span>
+         Something went wrong with our server. Please try your request again!
+       </div>
 
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="viewAlbumLabel">Current Album</h4>
+        <div class="row on-hide-album-info">
+        <!-- Add Album Modal API alerts -->
+        <!-- Current Image-->
+        <div id="formImage" class ="col-md-6 form-group"></div>
+        <!-- Current Information-->
+        <div class="form-group col-md-6 ">
+          <h3 class="view-album-label">Current Information</h3>
+          <h5>ID: <span id="albumIDDisplay" class="view-album-info"></span></h5>
+          <h5>Ranking: <span id="rankingDisplay" class="view-album-info"></span></h5>
+          <h5>Artist: <span id="artistDisplay" class="view-album-info"></span></h5>
+          <h5>Album: <span id="albumDisplay" class="view-album-info"></span></h5>
+          <h5>Year: <span id="yearDisplay" class="view-album-info"></span></h5>
+      <!-- Rating Information -->
+
+          <h3 class="view-album-label">Current Rating</h3>
+          <!-- No Rating founds -->
+            <div id="view-album-no-ratings-alert" class="alert alert-info view-album-modal-alert" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Uh oh!:</span>
+             No Ratings currently exist for this album!
             </div>
 
-            <div class="modal-body">
-              <!-- Current Information-->
-                <div class="form-group col-md-6">
-                  <h3>Current Information</h3>
-                  <label for="albumID">ID:</label>
-                  <p id="albumIDDisplay"></p>
-                  <label for="albumRanking">Ranking:</label>
-                  <p id="rankingDisplay">Unranked</p>
-                    <label for="albumArtist">Artist:</label>
-                    <p id="artistDisplay"></p>
-                    <label for="albumTitle">Album:</label>
-                    <p id="albumDisplay"></p>
-                    <label for="albumYear">Year:</label>
-                    <p id="yearDisplay"></p>
-                    <label for="albumStatus">Status:</label>
-                    <p id="statusDisplay" class="ratingoutput"></p>
-                      <label for="albumRating">Rating:</label>
-                      <p id="ratingDisplay" class="ratingoutput"></p>
-                  </div>
 
-                  <!-- Current Image-->
-                  <div id="formImage" class ="col-md-6 form-group ">
-                  </div>
-
-                  <!-- Current Comment-->
-                  <div class="form-group col-md-6">
-                    <h3>Current Comment</h3>
-                    <label for="albumTitle">Comment:</label>
-                    <p id="commentDisplay" class="ratingoutput"></p>
-                </div>
-              <!-- Input info-->
-                              <div class="form-group col-md-6">
-                                <h4 >User Rating:</h4>
-                                <p id="rating-reference" class="ratingoutput"></p>
-                                  <label for="albumStatus">Enter your Status:</label>
-                                                      <div class="dropdown">
-                                                      <button class="btn btn-default dropdown-toggle" type="button" id="album-status-select" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" >
-                                                        Album Status
-                                                        <span class="caret"></span>
-                                                      </button>
-                                                      <ul class="dropdown-menu" aria-labelledby="album-status-select">
-                                                        <li><a href="#" class="status-select">Not Started</a></li>
-                                                        <li><a href="#" class="status-select">In progress</a></li>
-                                                        <li><a href="#"  class="status-select">Completed</a></li>
-                                                      </ul>
-                                                    </div>
-
-                                                    <label for="albumStatus">Enter your Rating:</label>
-                                                                        <div class="dropdown">
-                                                                        <button class="btn btn-default dropdown-toggle" type="button" id="album-rating-select" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                                                          Rating
-                                                                          <span class="caret"></span>
-                                                                        </button>
-                                                                        <ul class="dropdown-menu" aria-labelledby="album-rating-select">
-                                                                          <li><a href="#" class="rating-select">0</a></li>
-                                                                          <li><a href="#" class="rating-select">1</a></li>
-                                                                          <li><a href="#" class="rating-select">2</a></li>
-                                                                          <li><a href="#" class="rating-select">3</a></li>
-                                                                          <li><a href="#" class="rating-select">4</a></li>
-                                                                          <li><a href="#" class="rating-select">5</a></li>
-                                                                        </ul>
-                                                                      </div>
-                                  <label for="albumRating">Enter your Rating:</label>
-                                  <label for="albumInputComments">Enter any comments:</label>
-                                  <textarea class="form-control ratingoutput" name=user_rating[comment] rows="3" id="comment-item"></textarea>
-                                        </div>
-                                      </div>
-
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" id="deleteratings">Reset Rating</button>
-              <button type="submit" class="btn btn-primary" id="saveratings">Save Rating</button>
-            </div>
+            <div class="rating-not-found-hide">
+            <h5>Status: <span id="statusDisplay" class="ratingoutput"></span></h5>
+            <h5>Rating: <span id="ratingDisplay" class="ratingoutput"></span></h5>
           </div>
         </div>
-      </form>
+
+        <!-- Current Comment-->
+          <div class="form-group col-md-6 comment-not-found-hide rating-not-found-hide">
+            <h3 class="view-album-label">Current Comment</h3>
+              <p id="commentDisplay" class="ratingoutput"></p>
+          </div>
+
+              <!-- Input info-->
+          <div class="form-group col-md-6 ">
+            <h3 class="view-album-label">Input User Rating</h3>
+            <h5>Rating Id: <span id="rating-reference" class="ratingoutput"></span></h5>
+            <h5>Select your Album Status:</h5>
+            <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" id="album-status-select" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" >
+                Album Status
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="album-status-select">
+                <li><a href="#" class="status-select">Not Started</a></li>
+                <li><a href="#" class="status-select">In progress</a></li>
+                <li><a href="#"  class="status-select">Completed</a></li>
+              </ul>
+            </div>
+
+            <h5 for="albumStatus">Enter your Rating:</h5>
+            <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" id="album-rating-select" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                Rating
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="album-rating-select">
+                <li><a href="#" class="rating-select">0</a></li>
+                <li><a href="#" class="rating-select">1</a></li>
+                <li><a href="#" class="rating-select">2</a></li>
+                <li><a href="#" class="rating-select">3</a></li>
+                <li><a href="#" class="rating-select">4</a></li>
+                <li><a href="#" class="rating-select">5</a></li>
+              </ul>
+                </div>
+                <h5>Enter any comments:</h5>
+                <textarea class="form-control ratingoutput" name=user_rating[comment] rows="3" id="comment-item"></textarea>
+              </div>
+
+
+          <!-- CLOSE CONTAINER AND BODY DIVS -->
+        </div>
+        </div>
+      </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" id="close-album-ratings-view">Close</button>
+            <button type="button" class="btn btn-primary" id="delete-ratings">Reset Rating</button>
+            <button type="submit" class="btn btn-primary" id="save-ratings">Save Rating</button>
+          </div>
+      <!-- CLOSING FORM DIVS     -->
+    </div>
+  </div>
+</form>
 
 
 
