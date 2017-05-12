@@ -3,92 +3,92 @@
 const api = require('./api.js')
 const ui = require('./ui.js')
 
-// Can be used for stats
-
+// Delete or remove a Rating
 const onResetRating = () => {
   event.preventDefault()
-  console.log('run Album get2')
-  let userRatingId = $('#rating-reference').text()
-  console.log(userRatingId)
+  $('.view-album-modal-alert').hide()
+  console.log('run Delete Rating')
+  const userRatingId = $('#rating-reference').text()
+  // Check to see if there is any rating to delete
   if (userRatingId === null || userRatingId === '') {
-    console.log('empty')
-    ui.resetRatingModal()
+    $('#ratings-delete-failure-alert').show()
+    $('#save-ratings').hide()
+    return
+  }
+// Running the delete AJAX
+  api.resetAlbumRating(userRatingId)
+    .then(ui.resetAlbumRatingSuccess)
+    .catch(ui.resetAlbumRatingFailure)
+}
+
+// Patch and Post Update
+const createUpdateRatings = function (event) {
+  event.preventDefault()
+  $('.view-album-modal-alert').hide()
+
+  const ratings = $('#album-rating-select').text()
+  const status = $('#album-status-select').text()
+  const albumId = $('#albumIDDisplay').text()
+  const comment = $('#comment-item').val()
+
+  // Check to see if you should make an update
+  if (comment === '' &&
+    (ratings === 'Rating' ||
+    ratings === 'None') &&
+    status === 'Album Status') {
+    $('#ratings-nothing-to-update-failure-alert').show()
     return
   }
 
-  api.resetAlbumRating(userRatingId)
-    .then(ui.resetAlbumSuccess)
-    .catch(ui.failure)
-}
-
-const createUpdateRatings = function(event) {
-  event.preventDefault()
-  console.log(event)
-  let ratings = $('#album-rating-select').text()
-  let status = $('#album-status-select').text()
-  let albumId = $('#albumIDDisplay').text()
-  let comment = $('comment-item').text()
-  console.log(comment);
-  // Check to see if you should make an update
-  if ($('#comment-item').val() !== '' ||
-    ratings !== 'Rating' ||
-    status !== 'Album Status') {
-    // Check t
     const data = {}
     data.user_rating = {}
-    console.log('Empty object', data)
     data.user_rating.album_id = albumId
-    console.log('albumId object', data)
-    if ($('#comment-item').val()) {
-      data.user_rating.comment = $('#comment-item').val()
-      console.log('rating object', data)
+
+    if (comment !== '') {
+      data.user_rating.comment = comment
     }
-    if (ratings !== 'Rating') {
+    if (ratings !== 'Rating' || ratings !== 'None') {
       data.user_rating.ratings = ratings
-      console.log('rating object', data)
     }
+
     if (status !== 'Album Status') {
       data.user_rating.status = status
-      console.log('status object', data)
     }
     console.log(data)
 
+// If no Rating then Create
     if ($('#rating-reference').text() === '') {
       api.createAlbumRating(data)
         .then(ui.createAlbumRatingSuccess)
-        .catch(ui.failure)
+        .catch(ui.updateCreateAlbumFailure)
     } else {
       console.log($('#rating-reference').text())
-
+// If Rating found then post
       let id = $('#rating-reference').text()
       api.updateAlbumRating(data, id)
         .then(ui.updateAlbumRatingSuccess)
-        .catch(ui.failure)
+        .catch(ui.updateCreateAlbumFailure)
     }
-  }
-
-  console.log('Message back No update necessary')
 }
 
 // UI view of selection on modal
 const albumStatusSetState = function (event) {
   event.preventDefault()
-  console.log(event)
-  console.log(event.currentTarget.text)
-
   $('#album-status-select').text(event.currentTarget.text)
 }
+
 const ratingSetState = function (event) {
   event.preventDefault()
   $('#album-rating-select').text(event.currentTarget.text)
 }
 
 const addHandlers = () => {
-  $('#deleteratings').on('click', onResetRating)
+  $('#delete-ratings').on('click', onResetRating)
   $(document).on('click', '#album-rating-select', ratingSetState)
   $(document).on('click', '.status-select', albumStatusSetState)
   $(document).on('click', '.rating-select', ratingSetState)
-  $('#saveratings').on('click', createUpdateRatings)
+  $('#save-ratings').on('click', createUpdateRatings)
+  $('#close-album-ratings-view').on('click', ui.resetViewAlbumModal)
 }
 
 module.exports = {

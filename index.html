@@ -448,7 +448,7 @@
           </div>
 
               <!-- Input info-->
-          <div class="form-group col-md-6 ">
+          <div class="form-group col-md-6 user-input-form-hide">
             <h3 class="view-album-label">Input User Rating</h3>
             <h5>Rating Id: <span id="rating-reference" class="ratingoutput"></span></h5>
             <h5>Select your Album Status:</h5>
@@ -464,14 +464,14 @@
               </ul>
             </div>
 
-            <h5 for="albumStatus">Enter your Rating:</h5>
+            <h5>Enter your Rating:</h5>
             <div class="dropdown">
               <button class="btn btn-default dropdown-toggle" type="button" id="album-rating-select" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                 Rating
                 <span class="caret"></span>
               </button>
               <ul class="dropdown-menu" aria-labelledby="album-rating-select">
-                <li><a href="#" class="rating-select">0</a></li>
+                <li><a href="#" class="rating-select">None</a></li>
                 <li><a href="#" class="rating-select">1</a></li>
                 <li><a href="#" class="rating-select">2</a></li>
                 <li><a href="#" class="rating-select">3</a></li>
@@ -482,8 +482,31 @@
                 <h5>Enter any comments:</h5>
                 <textarea class="form-control ratingoutput" name=user_rating[comment] rows="3" id="comment-item"></textarea>
               </div>
-
-
+              <div id="ratings-update-success-alert" class="alert alert-success view-album-modal-alert" role="alert">
+                 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                 <span class="sr-only">Success!:</span>
+                 You have successfuly posted an updated rating to this album!
+               </div>
+               <div id="ratings-delete-success-alert" class="alert alert-success view-album-modal-alert" role="alert">
+                  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                  <span class="sr-only">Success!:</span>
+                  You have successfuly deleted the rating on this album!
+                </div>
+                <div id="ratings-delete-failure-alert" class="alert alert-danger view-album-modal-alert" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">Uh oh!:</span>
+                 Oh No! You are trying to delete ratings that do not currently exist for this album!
+                </div>
+                <div id="ratings-update-failure-alert" class="alert alert-danger view-album-modal-alert" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">Uh oh!:</span>
+                 Oh No! We were unable to create or modify the rating.
+                </div>
+                <div id="ratings-nothing-to-update-failure-alert" class="alert alert-danger view-album-modal-alert" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">Uh oh!:</span>
+                 Oh No! We have no data to update
+                </div>
           <!-- CLOSE CONTAINER AND BODY DIVS -->
         </div>
         </div>
