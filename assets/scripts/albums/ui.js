@@ -121,7 +121,7 @@ const renderAlbums = (start) => {
   // Clear Contents
   clearContent()
   //  Define Variables
-  let showPerPage = 50
+  let showPerPage = 30
   let end = start + (showPerPage - 1)
   let pages = Math.ceil(store.albums.length / showPerPage)
   let currentPage = (start / showPerPage) + 1
@@ -192,7 +192,7 @@ const generatePageNav = function (needed, current) {
 // SELECT THE PAGE
 const selectPage = function (event) {
   event.preventDefault()
-  let showPerPage = 50
+  let showPerPage = 30
   const num = event.currentTarget.id.replace('page-', '')
   let start = (num - 1) * showPerPage
   console.log('Rendering Albums From' + start)

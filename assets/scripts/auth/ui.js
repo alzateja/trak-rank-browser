@@ -126,7 +126,7 @@ const signOutSuccess = () => {
   $('#display-current-user').text('')
 
   signOutShow()
-  // signOutLoadVideo()
+  signOutLoadVideo()
   console.log('Store looks like ', store)
 }
 

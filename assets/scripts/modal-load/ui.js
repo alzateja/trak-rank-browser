@@ -41,6 +41,7 @@ const getAlbumRatingInfoSuccess = (data) => {
     console.log('No data found')
     $('.rating-not-found-hide').hide()
     $('#view-album-no-ratings-alert').show()
+    $('#delete-ratings').hide()
     return
   }
 
