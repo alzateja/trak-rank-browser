@@ -16,7 +16,7 @@ const onViewAlbumDetail = (event) => {
     .catch(ui.getAlbumInfoFailure)
   console.log('Get Album Ratings')
   onGetAlbumRating(num)
-  $('#viewAlbumForm').modal('show')
+  $('#viewAlbumForm').modal({backdrop: 'static', keyboard: false})
 }
 
 // Get album specific Rating information

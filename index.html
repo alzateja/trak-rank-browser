@@ -19,20 +19,20 @@
     <p class="navbar-text navbar-left" id="display-current-user"></p>
     <ul class="nav nav-pills pull-right">
     <li role="presentation" class="active" id="user-albums-tab"><a href="#" id="user-albums">Home</a></li>
-    <li role="presentation" class="signin-show" id="create-album-tab"><a href="#" data-toggle="modal" data-target="#addAlbumForm">Create Album</a></li>
+    <li role="presentation" class="signin-show" id="create-album-tab"><a href="#" data-toggle="modal" data-target="#addAlbumForm" data-backdrop="static" data-keyboard="false">Create Album</a></li>
     <li role="presentation" class="signin-show"  id="user-stats-tab"><a href="#" >User Stats</a></li>
     <li class="dropdown" role="presentation" id="user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" >User Options<span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a data-toggle="modal" data-target="#signUpForm" class="signin-hide">Sign Up</a></li>
-              <li><a  data-toggle="modal" data-target="#signInForm" class="signin-hide">Sign In</a></li>
-              <li><a data-toggle="modal" data-target="#changePasswordForm" class="signin-show" >Change Password</a></li>
+              <li><a data-toggle="modal" data-target="#signUpForm" class="signin-hide" data-backdrop="static" data-keyboard="false">Sign Up</a></li>
+              <li><a  data-toggle="modal" data-target="#signInForm" class="signin-hide" data-backdrop="static" data-keyboard="false">Sign In</a></li>
+              <li><a data-toggle="modal" data-target="#changePasswordForm" class="signin-show" data-backdrop="static" data-keyboard="false">Change Password</a></li>
               <li><a id="sign-out" class="signin-show">Sign Out</a></li>
               </ul>
             </ul>
             </div>
           </nav>
-<!-- END OF NAVBAR -->
+
 <div class="signin-hide  launch">
 
     <div class="background-image">
@@ -43,8 +43,8 @@
         <p>Music is a moral law. It gives soul to the universe, wings to the mind, flight to the imagination, and charm and gaiety to life and to everything.</p>
         <footer>Plato</footer>
       </blockquote>
-      <a class="btn btn-info btn-lg " data-toggle="modal" data-target="#signUpForm" id="signupbut" href="#" role="button">Sign Up</a>
-      <a class="btn btn-primary btn-lg " data-toggle="modal" data-target="#signInForm" id="signinbut" href="#" role="button">Sign In</a>
+      <a class="btn btn-info btn-lg " data-toggle="modal" data-target="#signUpForm" id="signupbut" href="#" role="button" data-backdrop="static" data-keyboard="false">Sign Up</a>
+      <a class="btn btn-primary btn-lg " data-toggle="modal" data-target="#signInForm" id="signinbut" href="#" role="button" data-backdrop="static" data-keyboard="false">Sign In</a>
     </div>
   </div>
     <!-- End of Jumbotron-->
@@ -406,7 +406,7 @@
       <div class="modal-body">
       <div class="container-fluid">
         <!-- Api  Failure Messaging-->
-        <div id="view-album-api-failure-alert" class="alert alert-danger view-album-modal-alert" role="alert">
+        <div id="view-album-api-failure-alert" class="alert alert-danger view-album-modal-alert col-md-6 form-group" role="alert">
          <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
          <span class="sr-only">Uh oh!:</span>
          Something went wrong with our server. Please try your request again!
@@ -428,7 +428,7 @@
 
           <h3 class="view-album-label">Current Rating</h3>
           <!-- No Rating founds -->
-            <div id="view-album-no-ratings-alert" class="alert alert-info view-album-modal-alert" role="alert">
+            <div id="view-album-no-ratings-alert" class="alert alert-info view-album-modal-alert col-md-6 form-group" role="alert">
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
             <span class="sr-only">Uh oh!:</span>
              No Ratings currently exist for this album!
@@ -482,27 +482,27 @@
                 <h5>Enter any comments:</h5>
                 <textarea class="form-control ratingoutput" name=user_rating[comment] rows="3" id="comment-item"></textarea>
               </div>
-              <div id="ratings-update-success-alert" class="alert alert-success view-album-modal-alert" role="alert">
+              <div id="ratings-update-success-alert" class="alert alert-success view-album-modal-alert col-md-6 form-group" role="alert">
                  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                  <span class="sr-only">Success!:</span>
-                 You have successfuly posted an updated rating to this album!
+                 You have successfuly posted an updated rating to this album!  Your data will be updated the next time you open the form!
                </div>
-               <div id="ratings-delete-success-alert" class="alert alert-success view-album-modal-alert" role="alert">
+               <div id="ratings-delete-success-alert" class="alert alert-success view-album-modal-alert col-md-6 form-group" role="alert">
                   <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                   <span class="sr-only">Success!:</span>
-                  You have successfuly deleted the rating on this album!
+                  You have successfuly deleted the rating on this album! Your data will be updated the next time you open the form!
                 </div>
-                <div id="ratings-delete-failure-alert" class="alert alert-danger view-album-modal-alert" role="alert">
+                <div id="ratings-delete-failure-alert" class="alert alert-danger view-album-modal-alert col-md-6 form-group" role="alert">
                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                 <span class="sr-only">Uh oh!:</span>
                  Oh No! You are trying to delete ratings that do not currently exist for this album!
                 </div>
-                <div id="ratings-update-failure-alert" class="alert alert-danger view-album-modal-alert" role="alert">
+                <div id="ratings-update-failure-alert" class="alert alert-danger view-album-modal-alert col-md-6 form-group" role="alert">
                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                 <span class="sr-only">Uh oh!:</span>
                  Oh No! We were unable to create or modify the rating.
                 </div>
-                <div id="ratings-nothing-to-update-failure-alert" class="alert alert-danger view-album-modal-alert" role="alert">
+                <div id="ratings-nothing-to-update-failure-alert" class="alert alert-danger view-album-modal-alert col-md-6 form-group" role="alert">
                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                 <span class="sr-only">Uh oh!:</span>
                  Oh No! We have no data to update

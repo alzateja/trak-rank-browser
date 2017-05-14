@@ -32,9 +32,9 @@ blockquote {
   font-size: 1.5em;
 }
 
-// blockquote footer {
-//
-// }
+blockquote footer {
+  color: white;
+ }
 
 .background-image {
   background: url('https://s-media-cache-ak0.pinimg.com/736x/c7/f2/70/c7f2708fd7b8d98a1b84f00330229b4c.jpg');
@@ -74,4 +74,9 @@ blockquote {
 .view-album-label {
   font-weight: bold;
   text-decoration: underline;
+}
+
+.album-row {
+  margin-left: 20px;
+  margin-right: 20px;
 }
