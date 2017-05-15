@@ -5,11 +5,11 @@ const albumEvents = require('../albums/events.js')
 
 // Sign UP SUCCESS AND FAILURE MESSAGING ________________________
 const signUpSuccess = (data) => {
-  console.log('User sucessfully created:', data)
+  // console.log('User sucessfully created:', data)
   $('#sign-up-api-success-alert').show()
   $('.signup-input-hides').hide()
   $('.signupclear').val('')
-  console.log('Store looks like ', store)
+  // // console.log('Store looks like ', store)
 }
 
 const signUpFailure = (error) => {
@@ -18,12 +18,12 @@ const signUpFailure = (error) => {
     return
   }
   $('#sign-up-api-failure-alert').show()
-  console.log('Store looks like ', store)
+  // // console.log('Store looks like ', store)
 }
 
 // RESET SIGNUP MODAL
 const resetSignUpModal = function () {
-  console.log('Resetting signup Modal')
+  // console.log('Resetting signup Modal')
   $('.signupmodalalert').hide()
   $('.signupclear').val('')
   $('.signup-input-hides').show()
@@ -33,7 +33,7 @@ const resetSignUpModal = function () {
 //  SIGN IN SUCCESS AND FAILURE MESSAGING ________________________
 
 const signInSuccess = (data) => {
-  console.log('signIn success ran, data is: ', data)
+  // console.log('signIn success ran, data is: ', data)
   store.user = data.user
 
   // Update Sign In modal
@@ -46,12 +46,12 @@ const signInSuccess = (data) => {
 
   $('#display-current-user').text('Signed in as ' + data.user.email)
   albumEvents.onGetAlbums()
-  console.log('Store looks like ', store)
+  // // console.log('Store looks like ', store)
 }
 
 const signInFailure = (error) => {
   console.error('signIn error ran, error is: ', error)
-  console.log(error.statusText)
+  // console.log(error.statusText)
 
   if (error.statusText === 'error') {
     $('#sign-in-api-failure-alert').show()
@@ -64,12 +64,12 @@ const signInFailure = (error) => {
   }
   // Catch all modal
   $('#sign-in-hell-if-i-know-failure-alert').show()
-  console.log('Store looks like ', store)
+  // // console.log('Store looks like ', store)
 }
 
 // Reset Sign In Modal
 const resetSignInModal = function () {
-  console.log('Resetting signin Modal')
+  // console.log('Resetting signin Modal')
   $('.signinmodalalert').hide()
   $('.signin-input-hides').show()
   $('.signinclear').val('')
@@ -86,15 +86,15 @@ const signInShow = function () {
 //  Change Password SUCCESS AND FAILURE MESSAGING ______________________________
 
 const changePasswordSuccess = (data) => {
-  console.log('Password was succesfully changed, data is: ', data)
+  // console.log('Password was succesfully changed, data is: ', data)
   $('#change-pass-api-success-alert').show()
   $('.changepass-input-hides').hide()
   $('.passwordchangeclear').val('')
-  console.log('Store looks like ', store)
+  // // console.log('Store looks like ', store)
 }
 
 const changePasswordFailure = (error) => {
-  console.log('Password was not succesfully changed', error)
+  // console.log('Password was not succesfully changed', error)
 
   if (error.statusText === 'error') {
     $('#change-pass-api-failure-alert').show()
@@ -104,11 +104,11 @@ const changePasswordFailure = (error) => {
     $('#change-pass-api-incorrect-password-alert').show()
     return
   }
-  console.log('Store looks like ', store)
+  // // console.log('Store looks like ', store)
 }
 
 const resetChangePasswordModal = function () {
-  console.log('Resetting signin Modal')
+  // console.log('Resetting signin Modal')
   $('.changepassmodalalert').hide()
   $('.changepass-input-hides').show()
   $('.passwordchangeclear').val('')
@@ -118,8 +118,8 @@ const resetChangePasswordModal = function () {
 //  SIGN OUT SUCCESS AND FAILURE MESSAGING ______________________
 
 const signOutSuccess = () => {
-  console.log('signOut success ran, and nothing was returned')
-  console.log('Store looks like ', store)
+  // console.log('signOut success ran, and nothing was returned')
+  // // console.log('Store looks like ', store)
 
   store.user = null
   store.user_ratings = null
@@ -127,14 +127,14 @@ const signOutSuccess = () => {
 
   signOutShow()
   signOutLoadVideo()
-  console.log('Store looks like ', store)
+  // // console.log('Store looks like ', store)
 }
 
 const signOutFailure = (error) => {
   console.error('signOut error ran, error is: ', error)
   $('#signOutForm').modal('show')
   $('#signout-api-failure-alert').show()
-  console.log('Store looks like ', store)
+  // // console.log('Store looks like ', store)
 }
 
 const signOutShow = function () {
@@ -146,8 +146,8 @@ const signOutShow = function () {
 const signOutLoadVideo = function () {
   const array = store.videos
   const numOptions = store.videos.length - 1
-  console.log(array)
-  console.log(numOptions)
+  // // console.log(array)
+  // // console.log(numOptions)
   const random = Math.floor(Math.random() * (numOptions - 0 + 1)) + 0
   const video = array[random]
   $('#launch-video').append('<iframe class="embed-responsive-item" src="' + video + '&autoplay=1"></iframe>')

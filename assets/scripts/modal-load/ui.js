@@ -4,7 +4,7 @@ let store = require('../store')
 
 // GET ONE ALBUM INFORMATION
 const getAlbumInfoSuccess = (data) => {
-  console.log('Single Album get success')
+  // console.log('Single Album get success')
   store.album = data.album
   $('#albumIDDisplay').text(data.album.id)
   $('#rankingDisplay').text(data.album.ranking)
@@ -20,8 +20,8 @@ const getAlbumInfoSuccess = (data) => {
 
 // Get Album Info Failure
 const getAlbumInfoFailure = (error) => {
-  console.log('Failed to get single album data')
-  console.log(error)
+  // console.log('Failed to get single album data')
+  // console.log(error)
 
 // Server Error
   if (error.statusText === 'error') {
@@ -33,12 +33,12 @@ const getAlbumInfoFailure = (error) => {
 
 // On Get Album Rating Success
 const getAlbumRatingInfoSuccess = (data) => {
-  console.log(data)
+  // console.log(data)
   store.user_rating = null
 
 // If no rating found, then pop up alert
   if (data.user_ratings.length === 0) {
-    console.log('No data found')
+    // console.log('No data found')
     $('.rating-not-found-hide').hide()
     $('#view-album-no-ratings-alert').show()
     $('#delete-ratings').hide()
@@ -59,9 +59,9 @@ const getAlbumRatingInfoSuccess = (data) => {
 
 // On Failed to get Album Ratings
 const getAlbumRatingInfoFailure = (error) => {
-  console.log(error)
-  console.log('Failed to get single album data rating')
-  console.log(error)
+  // console.log(error)
+  // console.log('Failed to get single album data rating')
+  // console.log(error)
 }
 
 module.exports = {

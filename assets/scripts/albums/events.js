@@ -10,7 +10,7 @@ const onCreateAlbum = (event) => {
   $('.add-album-modal-alert').hide()
   const formValues = $('#addAlbumForm')[0]
   const data = getFormFields(formValues)
-  console.log('run add Album', data)
+  // console.log('run add Album', data)
 
   // Blank Field Check
   if (data.album.album === '' || data.album.artist === '') {
@@ -34,7 +34,7 @@ const onGetAlbums = () => {
 
 // GET ALL User Ratings
 const getUserRatings = () => {
-  console.log('run get user ratings')
+  // console.log('run get user ratings')
   api.getRatings()
     .then(ui.getRatingsSuccess)
     .then(ui.calculateStats)

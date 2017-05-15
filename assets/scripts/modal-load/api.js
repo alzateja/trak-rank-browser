@@ -11,7 +11,7 @@ const getAlbumInfo = function (id) {
 
 // AJAX request to get rating information based on the album id
 const getAlbumRatingInfo = function (id) {
-  console.log('test')
+  // console.log('test')
   return $.ajax({
     url: config.apiOrigin + '/user_ratings/by_album/' + id, // "http://book-json.herokuapp.com/books"
     method: 'GET',

@@ -20,7 +20,7 @@ const onSignUp = function (event) {
 
 // Password Match Check
   if (data.credentials.password !== data.credentials.password_confirmation) {
-    console.log('Your passwords do not match')
+    // console.log('Your passwords do not match')
     $('#sign-up-password-failure-alert').show()
     return
   }
@@ -35,7 +35,7 @@ const onSignUp = function (event) {
 const onSignIn = function (event) {
   event.preventDefault()
   $('.signinmodalalert').hide()
-  console.log('Sign In run')
+  // console.log('Sign In run')
   const data = getFormFields(this)
   // Criteria Check
 
@@ -55,20 +55,20 @@ const onSignIn = function (event) {
 const onChangePassword = function (event) {
   event.preventDefault()
   $('.changepassmodalalert').hide()
-  console.log('Changing password run')
+  // console.log('Changing password run')
   const data = getFormFields(this)
 
   if (
     data.passwords.old === '' || data.passwords.new === '') {
     $('#change-pass-blank-field-failure-alert').show()
-    console.log('No blank fields accepted')
+    // console.log('No blank fields accepted')
     return
   }
 
   if (
     data.passwords.old === data.passwords.new) {
     $('#change-pass-same-password-failure-alert').show()
-    console.log('same password')
+    // console.log('same password')
     return
   }
 
@@ -80,9 +80,9 @@ const onChangePassword = function (event) {
 // SIGNOUT FUNCTION EXECUTED WHEN BUTTON CLICKED___________________
 const onSignOut = function (event) {
   event.preventDefault()
-  console.log('Sign out run')
+  // console.log('Sign out run')
   if (store.user === undefined) {
-    console.log('Not signed In')
+    // console.log('Not signed In')
     return
   }
   authApi.signOut()

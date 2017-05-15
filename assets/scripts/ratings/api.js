@@ -4,7 +4,7 @@ const store = require('../store.js')
 
 // Create an Album rating
 const createAlbumRating = function (data) {
-  console.log('create ratings')
+  // console.log('create ratings')
   return $.ajax({
     url: config.apiOrigin + '/user_ratings/', // "http://book-json.herokuapp.com/books"
     method: 'POST',
@@ -17,7 +17,7 @@ const createAlbumRating = function (data) {
 
 // Update an Album Rating
 const updateAlbumRating = function (data, id) {
-  console.log('update ratings')
+  // console.log('update ratings')
   return $.ajax({
     url: config.apiOrigin + '/user_ratings/' + id, // "http://book-json.herokuapp.com/books"
     method: 'PATCH',
@@ -30,7 +30,7 @@ const updateAlbumRating = function (data, id) {
 
 // Reset an Album Rating
 const resetAlbumRating = function (id) {
-  console.log('reset ratings')
+  // console.log('reset ratings')
   return $.ajax({
     url: config.apiOrigin + '/user_ratings/' + id, // "http://book-json.herokuapp.com/books"
     method: 'DELETE',

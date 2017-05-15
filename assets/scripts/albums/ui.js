@@ -5,14 +5,14 @@ const showAlbumsTemplate = require('../templates/album-listing.handlebars')
 
 // ADD AN ALBUM
 const addAlbumSuccess = (data) => {
-  console.log('Album add success', data)
+  // console.log('Album add success', data)
   $('#add-album-api-success-alert').show()
   $('.add-album-input-hides').hide()
   $('#createalbumsubmit').hide()
 }
 
 const addAlbumFailure = (error) => {
-  console.log('Album failure')
+  // console.log('Album failure')
   console.error(error)
 
   if (error.statusText === 'error') {
@@ -22,7 +22,7 @@ const addAlbumFailure = (error) => {
 }
 
 const resetAddAlbumModal = () => {
-  console.log('Resetting the Add Album Modal')
+  // console.log('Resetting the Add Album Modal')
   $('.add-album-modal-alert').hide()
   $('.add-album-input-hides').show()
   $('.album-input').val('')
@@ -32,30 +32,30 @@ const resetAddAlbumModal = () => {
 
 // GET ALL ALBUMS
 const getAlbumsSuccess = (data) => {
-  console.log(data)
+  // console.log(data)
   store.albums = data.albums
-  console.log(store)
+  // console.log(store)
   renderAlbums(0)
 }
 
 const getAlbumsFailure = (error) => {
-  console.log('Unimaginable failure', error)
+  // console.log('Unimaginable failure', error)
 }
 
 // GET RATINGS
 const getRatingsSuccess = (data) => {
-  console.log('Get All Ratings success! You have ratings:' + data.user_ratings.length)
-  console.log('Your data looks like ', data)
+  // console.log('Get All Ratings success! You have ratings:' + data.user_ratings.length)
+  // console.log('Your data looks like ', data)
   store.user_ratings = data.user_ratings
 }
 
 const getRatingsFailure = (error) => {
-  console.log('Get All Ratings was a failure', error)
+  // console.log('Get All Ratings was a failure', error)
 }
 
 // CALCULATE STATS
 const calculateStats = function () {
-  // console.log(store.albums)
+  // // console.log(store.albums)
   const totalAlbums = store.albums.length
   let completeStat = 0
   let progressStat = 0
@@ -89,12 +89,12 @@ const calculateStats = function () {
   const avg = (ratingSum / ratingCount).toFixed(2)
 
     // Console log counts
-  console.log('Total Albums ' + totalAlbums)
-  console.log('Complete ' + completeStat)
-  console.log('In Progress ' + progressStat)
-  console.log('Not Started ' + notStartedStat)
-  console.log(store.user_ratings)
-  console.log(avg)
+  // console.log('Total Albums ' + totalAlbums)
+  // console.log('Complete ' + completeStat)
+  // console.log('In Progress ' + progressStat)
+  // console.log('Not Started ' + notStartedStat)
+  // console.log(store.user_ratings)
+  // console.log(avg)
 
     // Update Modals
   $('#album-count').text(totalAlbums)
@@ -110,7 +110,7 @@ const calculateStats = function () {
 }
 
 const resetUserStatsModal = () => {
-  console.log('Resetting the User StatsModal')
+  // console.log('Resetting the User StatsModal')
   $('.user-stat-display').text('')
   $('#userStatsForm').modal('hide')
 }
@@ -128,7 +128,7 @@ const renderAlbums = (start) => {
   let renderCounter = 0
   let temp = []
 // Console log current Page
-  console.log('current page:' + currentPage)
+  // console.log('current page:' + currentPage)
 
 // Generate page Navigation
   generatePageNav(pages, currentPage)
@@ -195,13 +195,13 @@ const selectPage = function (event) {
   let showPerPage = 30
   const num = event.currentTarget.id.replace('page-', '')
   let start = (num - 1) * showPerPage
-  console.log('Rendering Albums From' + start)
+  // console.log('Rendering Albums From' + start)
   renderAlbums(start)
 }
 
 // Clear Screen
 const clearContent = () => {
-  console.log('Clear Album Content Display Screen')
+  // console.log('Clear Album Content Display Screen')
   $('#content').empty()
 }
 

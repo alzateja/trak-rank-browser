@@ -2,9 +2,9 @@
 const store = require('../store.js')
 // RESET ALBUM RATING
 const resetAlbumRatingSuccess = (data) => {
-  console.log(store)
-  console.log('Deleted an album entry')
-  console.log(data)
+  // console.log(store)
+  // console.log('Deleted an album entry')
+  // console.log(data)
   $('#save-ratings').hide()
   $('#delete-ratings').hide()
   $('.user-input-form-hide').hide()
@@ -12,9 +12,9 @@ const resetAlbumRatingSuccess = (data) => {
 }
 
 const resetAlbumRatingFailure = (error) => {
-  console.log(store)
-  console.log('Failed to deleted an album rating')
-  console.log(error)
+  // console.log(store)
+  // console.log('Failed to deleted an album rating')
+  // console.log(error)
   $('#save-ratings').hide()
   $('#delete-ratings').hide()
   $('.user-input-form-hide').hide()
@@ -23,7 +23,7 @@ const resetAlbumRatingFailure = (error) => {
 
 // Reset Rating Modal
 const resetViewAlbumModal = () => {
-  console.log('Resetting the View Rating Modal')
+  // console.log('Resetting the View Rating Modal')
 
   // Hide alerts
   $('.view-album-modal-alert').hide()
@@ -48,8 +48,8 @@ const resetViewAlbumModal = () => {
 
 // CREATED ALBUM RATING SUCCESS
 const createAlbumRatingSuccess = () => {
-  console.log(store)
-  console.log('Created an album rating')
+  // console.log(store)
+  // console.log('Created an album rating')
   $('#save-ratings').hide()
   $('#delete-ratings').hide()
   $('.user-input-form-hide').hide()
@@ -58,8 +58,8 @@ const createAlbumRatingSuccess = () => {
 
 // RESET ALBUM RATING
 const updateAlbumRatingSuccess = () => {
-  console.log(store)
-  console.log('Updated an album rating')
+  // console.log(store)
+  // console.log('Updated an album rating')
   $('#save-ratings').hide()
   $('#delete-ratings').hide()
   $('.user-input-form-hide').hide()
@@ -67,9 +67,9 @@ const updateAlbumRatingSuccess = () => {
 }
 
 const updateCreateAlbumFailure = (error) => {
-  console.log(store)
-  console.log('Created or update Album rating Failure')
-  console.log(error)
+  // console.log(store)
+  // console.log('Created or update Album rating Failure')
+  // console.log(error)
   $('#save-ratings').hide()
   $('#delete-ratings').hide()
   $('.user-input-form-hide').hide()

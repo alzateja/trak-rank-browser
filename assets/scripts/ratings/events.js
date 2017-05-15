@@ -7,7 +7,7 @@ const ui = require('./ui.js')
 const onResetRating = () => {
   event.preventDefault()
   $('.view-album-modal-alert').hide()
-  console.log('run Delete Rating')
+  // console.log('run Delete Rating')
   const userRatingId = $('#rating-reference').text()
   // Check to see if there is any rating to delete
   if (userRatingId === null || userRatingId === '') {
@@ -54,7 +54,7 @@ const createUpdateRatings = function (event) {
     if (status !== 'Album Status') {
       data.user_rating.status = status
     }
-    console.log(data)
+    // console.log(data)
 
 // If no Rating then Create
     if ($('#rating-reference').text() === '') {
@@ -62,7 +62,7 @@ const createUpdateRatings = function (event) {
         .then(ui.createAlbumRatingSuccess)
         .catch(ui.updateCreateAlbumFailure)
     } else {
-      console.log($('#rating-reference').text())
+      // console.log($('#rating-reference').text())
 // If Rating found then post
       let id = $('#rating-reference').text()
       api.updateAlbumRating(data, id)
