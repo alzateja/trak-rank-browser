@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Trak Rank</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- Do not add `link` tags unless you know what you are doing -->
+      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+      <!-- Do not add `script` tags unless you know what you are doing -->
+      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Raleway" rel="stylesheet">
+
+    <body class="container-fluid">
+
+      <nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <p class="navbar-text navbar-left" id="display-current-user"></p>
+    <ul class="nav nav-pills pull-right">
+    <li role="presentation" class="active" id="user-albums-tab"><a href="#" id="user-albums">Home</a></li>
+    <li role="presentation" class="signin-show" id="create-album-tab"><a href="#" data-toggle="modal" data-target="#addAlbumForm" data-backdrop="static" data-keyboard="false">Create Album</a></li>
+    <li role="presentation" class="signin-show"  id="user-stats-tab"><a href="#" >User Stats</a></li>
+    <li class="dropdown" role="presentation" id="user-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" >User Options<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a data-toggle="modal" data-target="#signUpForm" class="signin-hide" data-backdrop="static" data-keyboard="false">Sign Up</a></li>
+              <li><a  data-toggle="modal" data-target="#signInForm" class="signin-hide" data-backdrop="static" data-keyboard="false">Sign In</a></li>
+              <li><a data-toggle="modal" data-target="#changePasswordForm" class="signin-show" data-backdrop="static" data-keyboard="false">Change Password</a></li>
+              <li><a id="sign-out" class="signin-show">Sign Out</a></li>
+              </ul>
+            </ul>
+            </div>
+          </nav>
+
+<div class="signin-hide  launch">
+
+    <div class="background-image">
+    <div class="jumbotron">
+      <h1>Trak-Rank</h1>
+      <h3>Rate your music</h3>
+      <blockquote>
+        <p>Music is a moral law. It gives soul to the universe, wings to the mind, flight to the imagination, and charm and gaiety to life and to everything.</p>
+        <footer>Plato</footer>
+      </blockquote>
+      <a class="btn btn-info btn-lg " data-toggle="modal" data-target="#signUpForm" id="signupbut" href="#" role="button" data-backdrop="static" data-keyboard="false">Sign Up</a>
+      <a class="btn btn-primary btn-lg " data-toggle="modal" data-target="#signInForm" id="signinbut" href="#" role="button" data-backdrop="static" data-keyboard="false">Sign In</a>
+    </div>
+  </div>
+    <!-- End of Jumbotron-->
+
+ <!-- Initial view -->
+ <!-- 1st- Video Div -->
+  <div class="panel panel-primary ">
+    <div class="panel-heading">
+      <h1 class="panel-title">Listen</h1>
+    </div>
+      <div id='launch-video' class="embed-responsive embed-responsive-16by9">
+              <!-- <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/hi4pzKvuEQM?autoplay=1"></iframe> -->
+        </div>
+      </div>
+
+ <!--2nd - Image Div -->
+          <div class ="panel">
+          <div class="panel panel-info minipanel">
+            <div class="panel-heading">
+              <h1 class="panel-title">Add Your Music</h1>
+            </div>
+            <img class="img-responsive landing-image" src="https://i.imgur.com/OyesG4C.jpg" alt="Album cover for To Pimp a Butterfly">
+          </div>
+
+ <!--3nd - Image Div -->
+          <div class="panel panel-info minipanel">
+            <div class="panel-heading">
+    <h1 class="panel-title">Rate your music</h1>
+  </div>
+  <img class="img-responsive landing-image" src="http://tiledwallpaper.com/wallpapers/2015/4/2075297009552868a80ead53.91206860.jpg" alt="Collage of album covers">
+  </div>
+
+</div>
+</div>
+<!-- Sign In Divs-->
+<!-- Calulcate nav -->
+
+
+
+<div class="row pages signin-show " id="pages">
+
+  <nav aria-label="Page navigation">
+    <ul class="pagination" id="page-lister">
+
+    </ul>
+  </nav>
+
+ <!-- Content Row -->
+<div id="content" class="content row">
+</div>
+
+</div>
+
+
+<!-- AUTHORIZATION MODALS -->
+
+              <!-- SIGN UP Modal -->
+              <form class="modal fade" id="signUpForm" tabindex="-1" role="dialog" aria-labelledby="signUpLabel">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title" id="signUpLabel">Please enter your information to sign up</h4>
+                    </div>
+                    <div class="modal-body">
+                      <!-- Sign Up Modal input fields-->
+                          <div class="form-group signup-input-hides">
+                            <label for="playerEmail">Email</label>
+                            <input name="credentials[email]" type="email" class="form-control signupclear" id="signUpPlayerEmail" placeholder="Please enter your email.">
+                          </div>
+                          <div class="form-group signup-input-hides">
+                            <label for="playerPassword">Password</label>
+                            <input name="credentials[password]" type="password" class="form-control signupclear" id="signUpPlayerPassword" placeholder="Please enter password.">
+                          </div>
+                          <div class="form-group signup-input-hides">
+                            <label for="playerPasswordConfirm">Password Confirmation</label>
+                            <input name="credentials[password_confirmation]" type="password" class="form-control signupclear " id="signUpPlayerPasswordConfirm" placeholder="Confirm Password.">
+                          </div>
+                          <!-- Sign Up Modal input alerts -->
+                          <div id="sign-up-password-failure-alert" class="alert alert-danger signupmodalalert" role="alert">
+                             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                             <span class="sr-only">Uh oh!:</span>
+                             Your passwords do not match! Please try again!
+                           </div>
+                           <div id="sign-up-blank-field-failure-alert" class="alert alert-danger signupmodalalert" role="alert">
+                              <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                              <span class="sr-only">Uh oh!:</span>
+                              You seem to have some blank fields! Please check doublecheck your entries and try again!
+                            </div>
+                          <!-- Sign Up Modal API alerts -->
+                            <div id="sign-up-api-failure-alert" class="alert alert-danger signupmodalalert" role="alert">
+                               <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                               <span class="sr-only">Uh oh!:</span>
+                               Something went wrong with our server. Please try your request again!
+                             </div>
+                             <div id="sign-up-api-duplicate-account-alert" class="alert alert-danger signupmodalalert" role="alert">
+                                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                <span class="sr-only">Uh oh!:</span>
+                                Someone already seems to have registered under that email account. Please try signing in.
+                              </div>
+                              <!-- Sign Up Success API alerts -->
+                             <div id="sign-up-api-success-alert" class="alert alert-success signupmodalalert" role="alert">
+                                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                <span class="sr-only">Success!:</span>
+                                You have successfuly created an account! Sign in now to enjoy TrakRank!
+                              </div>
+
+                      </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" id="signupclose">Close</button>
+                      <button type="submit" class="btn btn-primary signup-input-hides" id="signupsubmit">Submit</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+
+
+
+      <!-- SignIn Modal -->
+      <form class="modal fade" id="signInForm" tabindex="-1" role="dialog" aria-labelledby="signInLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="signInLabel">Please Sign In!</h4>
+            </div>
+            <div class="modal-body">
+              <!-- Sign In Modal input fields-->
+                  <div class="form-group signin-input-hides">
+                    <label for="playerEmail">Email</label>
+                    <input name="credentials[email]" type="email" class="form-control signinclear" id="signInPlayerEmail" placeholder="Please enter your email.">
+                  </div>
+                  <div class="form-group signin-input-hides">
+                    <label for="playerPassword">Password</label>
+                    <input name="credentials[password]" type="password" class="form-control signinclear" id="signInPlayerPassword" placeholder="Please enter password.">
+                  </div>
+                  <!-- Sign In Modal input alerts -->
+                <div id="sign-in-blank-field-failure-alert" class="alert alert-danger signinmodalalert" role="alert">
+                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                 <span class="sr-only">Uh oh!:</span>
+                 You seem to have some blank fields! Please check doublecheck your entries and try again!
+                 </div>
+                 <!-- Sign In Modal API alerts -->
+                 <div id="sign-in-api-failure-alert" class="alert alert-danger signinmodalalert" role="alert">
+                  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                  <span class="sr-only">Uh oh!:</span>
+                  Something went wrong with our server. Please try your request again!
+                </div>
+                <div id="sign-in-api-unknown-account-alert" class="alert alert-danger signinmodalalert" role="alert">
+                   <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                   <span class="sr-only">Uh oh!:</span>
+                   Unathorized access. Please ensure that you have signed up for an account and have used the correct password.
+                 </div>
+                 <div id="sign-in-hell-if-i-know-failure-alert" class="alert alert-danger signinmodalalert" role="alert">
+                    <span class="glyphicon glyphicon-exclamation-sign " aria-hidden="true"></span>
+                    <span class="sr-only">Uh oh!:</span>
+                    Hell if I know! You are a rare bread!
+                  </div>
+                 <!-- Sign In Success API alerts -->
+                <div id="sign-in-api-success-alert" class="alert alert-success signinmodalalert" role="alert">
+                   <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                   <span class="sr-only">Success!:</span>
+                   You have successfuly signed in! Enjoy TrakRank!
+                 </div>
+
+                    </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" id="signinclose">Close</button>
+              <button type="submit" class="btn btn-primary signin-input-hides" id="signinsubmit">Sign In!</button>
+            </div>
+          </div>
+        </div>
+      </form>
+
+
+      <!-- Password Modal -->
+      <form class="modal fade" id="changePasswordForm" tabindex="-1" role="dialog" aria-labelledby="changePasswordLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+
+            <div class="modal-header">
+              <h4 class="modal-title" id="changePasswordLabel">Change Your Password Here!</h4>
+            </div>
+
+            <div class="modal-body">
+                  <div class="form-group changepass-input-hides">
+                    <label for="playerOldPassword">Old Password</label>
+                    <input name="passwords[old]" type="password" class="form-control passwordchangeclear" id="changePassOld" placeholder="Please enter your email.">
+                  </div>
+                  <div class="form-group changepass-input-hides">
+                    <label for="playerOldPassword">New Password</label>
+                    <input name="passwords[new]" type="password" class="form-control passwordchangeclear" id="changePassNew" placeholder="Please enter password.">
+                  </div>
+                  <!-- Password Modal input alerts -->
+                <div id="change-pass-blank-field-failure-alert" class="alert alert-danger changepassmodalalert" role="alert">
+                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                 <span class="sr-only">Uh oh!:</span>
+                 You have a blank field! Please check doublecheck your entries and try again!
+                 </div>
+                 <div id="change-pass-same-password-failure-alert" class="alert alert-danger changepassmodalalert" role="alert">
+                  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                  <span class="sr-only">Uh oh!:</span>
+                  The old and new passwords you entered are the same! Please make sure they are different!
+                  </div>
+                 <!-- Password Modal API alerts -->
+                 <div id="change-pass-api-failure-alert" class="alert alert-danger changepassmodalalert" role="alert">
+                  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                  <span class="sr-only">Uh oh!:</span>
+                  Something went wrong with our server. Please try your request again!
+                </div>
+                <div id="change-pass-api-incorrect-password-alert" class="alert alert-danger changepassmodalalert" role="alert">
+                   <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                   <span class="sr-only">Uh oh!:</span>
+                   The password you entered does not seem to match our records.
+                 </div>
+                 <!-- Sign In Success API alerts -->
+                <div id="change-pass-api-success-alert" class="alert alert-success changepassmodalalert" role="alert">
+                   <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                   <span class="sr-only">Success!:</span>
+                   You have successfuly changed you password.
+                 </div>
+                    </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" id="changepasswordclose">Close</button>
+              <button type="submit" class="btn btn-danger changepass-input-hides" id="changepasswordsubmit">Change Password!</button>
+            </div>
+          </div>
+        </div>
+      </form>
+
+
+      <!-- Sign Out Modal -->
+      <form class="modal fade" id="signOutForm" tabindex="-1" role="dialog" aria-labelledby="signOutLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+
+            <div class="modal-header">
+              <h4 class="modal-title" id="signOutLabel">Sorry! Our server is down</h4>
+            </div>
+
+            <div class="modal-body">
+                 <!-- Sign Out Modal API alerts -->
+                 <div id="signout-api-failure-alert" class="alert alert-danger changepassmodalalert" role="alert">
+                  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                  <span class="sr-only">Uh oh!:</span>
+                  Something went wrong with our server. Please try your request again!
+                </div>
+                    </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </form>
+<!-- END OF AUTHORIZATION MODALS -->
+
+
+
+
+      <!-- Add  Album modal -->
+      <form  class="modal fade" id="addAlbumForm" tabindex="-1" role="dialog" aria-labelledby="addAlbumLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="addAlbumLabel">Add a new Album</h4>
+            </div>
+            <div class="modal-body">
+                  <div class="form-group add-album-input-hides">
+                    <label for="albumArtist">Artist(Required):</label>
+                    <input name="album[artist]" type="text" class="form-control album-input" id="setArtist" placeholder="Please enter the artist.">
+                  </div>
+                  <div class="form-group add-album-input-hides">
+                    <label for="albumTitle">Album(Required):</label>
+                    <input name="album[album]" type="text" class="form-control album-input" id="setAlbum" placeholder="Please enter the album name.">
+                  </div>
+                  <div class="form-group add-album-input-hides">
+                    <label for="albumYear">Year:</label>
+                    <input name="album[year]" type="text" class="form-control album-input" id="setYear" placeholder="Please enter the album year.">
+                  </div>
+                  <div class="form-group add-album-input-hides">
+                    <label for="albumImage">Image:</label>
+                    <input name="album[image]" type="text" class="form-control album-input" id="setImage" placeholder="Please enter the url for the album image.">
+                  </div>
+                  <!-- Add Album Modal input alerts -->
+                  <div id="add-album-blank-field-failure-alert" class="alert alert-danger add-album-modal-alert" role="alert">
+                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                 <span class="sr-only">Uh oh!:</span>
+                 You have missing required fields! Please check doublecheck your entries and try again!
+                 </div>
+                 <!-- Add Album Modal API alerts -->
+                 <div id="add-album-api-failure-alert" class="alert alert-danger add-album-modal-alert" role="alert">
+                  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                  <span class="sr-only">Uh oh!:</span>
+                  Something went wrong with our server. Please try your request again!
+                </div>
+                 <!-- Add Album Success API alerts -->
+                <div id="add-album-api-success-alert" class="alert alert-success add-album-modal-alert" role="alert">
+                   <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                   <span class="sr-only">Success!:</span>
+                   You have successfuly added an Album.
+                 </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" id="createalbumclose">Close</button>
+              <button type="submit" class="btn btn-primary" id="createalbumsubmit">Submit</button>
+            </div>
+          </div>
+        </div>
+      </form>
+
+
+      <!-- User Stats -->
+      <form class="modal fade" id="userStatsForm" tabindex="-1" role="dialog" aria-labelledby="userStatsLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="userStatsLabel">User Statistics</h4>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+              <label><strong>Total Albums:</strong></label>
+              <p id="album-count" class="user-stat-display"></p>
+            </div>
+            <div class="form-group">
+              <label><strong>Completed:</strong></label>
+              <p id="album-completed" class="user-stat-display"></p>
+            </div>
+            <div class="form-group">
+              <label><strong>In Progress:</strong></label>
+              <p id="album-in-progress" class="user-stat-display"></p>
+            </div>
+            <div class="form-group">
+              <label><strong>Not Started:</strong></label>
+              <p id="album-not-started" class="user-stat-display"></p>
+            </div>
+             <div class="form-group">
+              <label><strong>Avg. Rating:</strong></label>
+              <p id="album-avg-ratings" class="user-stat-display"></p>
+          </div>
+                    </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" id="userstatsclose">Close</button>
+            </div>
+          </div>
+        </div>
+      </form>
+
+
+
+
+      <!-- View Album modal -->
+<form class="modal fade bd-example-modal-lg" id="viewAlbumForm" tabindex="-1" role="dialog" aria-labelledby="viewAlbumLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <!-- MODAL HEADER -->
+      <div class="modal-header">
+      <h2 class="modal-title" id="viewAlbumLabel">Current Album</h2>
+      </div>
+      <!-- MODAL HEADER ClOSED-->
+      <!-- MODAL BODY -->
+      <div class="modal-body">
+      <div class="container-fluid">
+        <!-- Api  Failure Messaging-->
+        <div id="view-album-api-failure-alert" class="alert alert-danger view-album-modal-alert col-md-6 form-group" role="alert">
+         <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+         <span class="sr-only">Uh oh!:</span>
+         Something went wrong with our server. Please try your request again!
+       </div>
+
+        <div class="row on-hide-album-info">
+        <!-- Add Album Modal API alerts -->
+        <!-- Current Image-->
+        <div id="formImage" class ="col-md-6 form-group"></div>
+        <!-- Current Information-->
+        <div class="form-group col-md-6 ">
+          <h3 class="view-album-label">Current Information</h3>
+          <h5>ID: <span id="albumIDDisplay" class="view-album-info"></span></h5>
+          <h5>Ranking: <span id="rankingDisplay" class="view-album-info"></span></h5>
+          <h5>Artist: <span id="artistDisplay" class="view-album-info"></span></h5>
+          <h5>Album: <span id="albumDisplay" class="view-album-info"></span></h5>
+          <h5>Year: <span id="yearDisplay" class="view-album-info"></span></h5>
+      <!-- Rating Information -->
+
+          <h3 class="view-album-label">Current Rating</h3>
+          <!-- No Rating founds -->
+            <div id="view-album-no-ratings-alert" class="alert alert-info view-album-modal-alert col-md-6 form-group" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Uh oh!:</span>
+             No Ratings currently exist for this album!
+            </div>
+
+
+            <div class="rating-not-found-hide">
+            <h5>Status: <span id="statusDisplay" class="ratingoutput"></span></h5>
+            <h5>Rating: <span id="ratingDisplay" class="ratingoutput"></span></h5>
+          </div>
+        </div>
+
+        <!-- Current Comment-->
+          <div class="form-group col-md-6 comment-not-found-hide rating-not-found-hide">
+            <h3 class="view-album-label">Current Comment</h3>
+              <p id="commentDisplay" class="ratingoutput"></p>
+          </div>
+
+              <!-- Input info-->
+          <div class="form-group col-md-6 user-input-form-hide">
+            <h3 class="view-album-label">Input User Rating</h3>
+            <h5>Rating Id: <span id="rating-reference" class="ratingoutput"></span></h5>
+            <h5>Select your Album Status:</h5>
+            <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" id="album-status-select" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" >
+                Album Status
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="album-status-select">
+                <li><a href="#" class="status-select">Not Started</a></li>
+                <li><a href="#" class="status-select">In progress</a></li>
+                <li><a href="#"  class="status-select">Completed</a></li>
+              </ul>
+            </div>
+
+            <h5>Enter your Rating:</h5>
+            <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" id="album-rating-select" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                Rating
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="album-rating-select">
+                <li><a href="#" class="rating-select">None</a></li>
+                <li><a href="#" class="rating-select">1</a></li>
+                <li><a href="#" class="rating-select">2</a></li>
+                <li><a href="#" class="rating-select">3</a></li>
+                <li><a href="#" class="rating-select">4</a></li>
+                <li><a href="#" class="rating-select">5</a></li>
+              </ul>
+                </div>
+                <h5>Enter any comments:</h5>
+                <textarea class="form-control ratingoutput" name=user_rating[comment] rows="3" id="comment-item"></textarea>
+              </div>
+              <div id="ratings-update-success-alert" class="alert alert-success view-album-modal-alert col-md-6 form-group" role="alert">
+                 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                 <span class="sr-only">Success!:</span>
+                 You have successfuly posted an updated rating to this album!  Your data will be updated the next time you open the form!
+               </div>
+               <div id="ratings-delete-success-alert" class="alert alert-success view-album-modal-alert col-md-6 form-group" role="alert">
+                  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                  <span class="sr-only">Success!:</span>
+                  You have successfuly deleted the rating on this album! Your data will be updated the next time you open the form!
+                </div>
+                <div id="ratings-delete-failure-alert" class="alert alert-danger view-album-modal-alert col-md-6 form-group" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">Uh oh!:</span>
+                 Oh No! You are trying to delete ratings that do not currently exist for this album!
+                </div>
+                <div id="ratings-update-failure-alert" class="alert alert-danger view-album-modal-alert col-md-6 form-group" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">Uh oh!:</span>
+                 Oh No! We were unable to create or modify the rating.
+                </div>
+                <div id="ratings-nothing-to-update-failure-alert" class="alert alert-danger view-album-modal-alert col-md-6 form-group" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">Uh oh!:</span>
+                 Oh No! We have no data to update
+                </div>
+          <!-- CLOSE CONTAINER AND BODY DIVS -->
+        </div>
+        </div>
+      </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" id="close-album-ratings-view">Close</button>
+            <button type="button" class="btn btn-primary" id="delete-ratings">Reset Rating</button>
+            <button type="submit" class="btn btn-primary" id="save-ratings">Save Rating</button>
+          </div>
+      <!-- CLOSING FORM DIVS     -->
+    </div>
+  </div>
+</form>
+
+
+
+    </body>
+</html>
