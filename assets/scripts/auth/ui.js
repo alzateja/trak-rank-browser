@@ -145,7 +145,7 @@ const signOutShow = function () {
 
 const signOutLoadVideo = function () {
   const array = store.videos
-  const numOptions = store.videos.length
+  const numOptions = store.videos.length - 1
   console.log(array)
   console.log(numOptions)
   const random = Math.floor(Math.random() * (numOptions - 0 + 1)) + 0

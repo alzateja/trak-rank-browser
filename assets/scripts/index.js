@@ -46,11 +46,12 @@ const storeVideos = function () {
 
 const onLoadVideo = function () {
   const array = store.videos
-  const numOptions = store.videos.length
+  const numOptions = store.videos.length - 1
   console.log(array)
   console.log(numOptions)
   const random = Math.floor(Math.random() * (numOptions - 0 + 1)) + 0
   const video = array[random]
+  console.log(random)
   $('#launch-video').append('<iframe class="embed-responsive-item" src="' + video + '&autoplay=1"></iframe>')
 }
 
